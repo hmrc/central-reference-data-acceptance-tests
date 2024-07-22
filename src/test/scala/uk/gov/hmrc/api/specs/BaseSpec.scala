@@ -19,5 +19,14 @@ package uk.gov.hmrc.api.specs
 import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.GivenWhenThen
+import uk.gov.hmrc.api.conf.TestConfiguration
 
-trait BaseSpec extends AnyFeatureSpec with GivenWhenThen with Matchers {}
+import scala.concurrent.{Await, Awaitable, Future}
+import scala.concurrent.duration.Duration
+import scala.concurrent.duration.*
+
+trait BaseSpec extends AnyFeatureSpec, GivenWhenThen, Matchers:
+  val host: String = TestConfiguration.url("central-reference-data-inbound-orchestrator")
+
+  def await[T](f: Awaitable[T], timeout: Duration = 10.seconds): T =
+    Await.result(f, timeout)

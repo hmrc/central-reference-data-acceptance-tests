@@ -17,18 +17,14 @@
 package uk.gov.hmrc.api.specs
 
 import uk.gov.hmrc.api.client.HttpClient
+import play.api.libs.ws.DefaultBodyReadables.readableAsString
 
-import scala.concurrent.Await
-import scala.concurrent.duration._
-
-class HelloWorld extends BaseSpec with HttpClient {
+class HelloWorld extends BaseSpec, HttpClient:
 
   Feature("User can test the template service") {
     Scenario("hello world endpoint works") {
       Given("the endpoint is accessed")
-      val result =
-        Await.result(get("http://localhost:7250/central-reference-data-inbound-orchestrator/hello-world"), 10.seconds)
+      val result = await(get(s"$host/hello-world"))
       result.body shouldBe "Hello world"
     }
   }
-}
