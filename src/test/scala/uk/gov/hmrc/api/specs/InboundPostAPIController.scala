@@ -25,7 +25,6 @@ class InboundPostAPIController extends BaseSpec, HttpClient:
     Scenario("Central-reference-data-inbound-orchestrator endpoint works") {
       Given("The endpoint is accessed")
       val url    = s"$host"
-      println(url)
       val result = await(
         post(
           url,
@@ -37,9 +36,8 @@ class InboundPostAPIController extends BaseSpec, HttpClient:
       result.status shouldBe 202
     }
     Scenario("Return Bad Request if the x-files-included header is not present") {
-      Given("The endpoint can not accessed")
+      Given("The endpoint is not accessed")
       val url    = s"$host"
-      println(url)
       val result = await(
         post(
           url,
@@ -51,9 +49,8 @@ class InboundPostAPIController extends BaseSpec, HttpClient:
     }
 
     Scenario("Return Bad Request if there is no XML content") {
-      Given("The endpoint can not accessed")
+      Given("The endpoint is not accessed")
       val url    = s"$host"
-      println(url)
       val result = await(
         post(
           url,
