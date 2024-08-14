@@ -1,6 +1,5 @@
 package uk.gov.hmrc.api.utils
 
-
 import java.util.UUID
 
 object InboundSoapMessage {
@@ -15,5 +14,3 @@ object InboundSoapMessage {
        |      </Body>
        |    </MainMessage>""".stripMargin
 }
-
-

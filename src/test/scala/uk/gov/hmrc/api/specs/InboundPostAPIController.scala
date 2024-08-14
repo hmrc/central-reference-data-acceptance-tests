@@ -24,12 +24,12 @@ class InboundPostAPIController extends BaseSpec, HttpClient:
   Feature("User can test the inbound post api public-soap-proxy") {
     Scenario("Central-reference-data-inbound-orchestrator endpoint works") {
       Given("The endpoint is accessed")
-      val url = s"$host"
+      val url    = s"$host"
       val result = await(
         post(
           url,
           xmlBody,
-          "content-type" -> "application/xml",
+          "content-type"     -> "application/xml",
           "x-files-included" -> "true"
         )
       )
@@ -37,7 +37,7 @@ class InboundPostAPIController extends BaseSpec, HttpClient:
     }
     Scenario("Return Bad Request if the x-files-included header is not present") {
       Given("The endpoint is not accessed")
-      val url = s"$host"
+      val url    = s"$host"
       val result = await(
         post(
           url,
@@ -50,13 +50,13 @@ class InboundPostAPIController extends BaseSpec, HttpClient:
 
     Scenario("Return Bad Request if there is no XML content") {
       Given("The endpoint is not accessed")
-      val url = s"$host"
+      val url    = s"$host"
       val result = await(
         post(
           url,
           "",
           "x-files-included" -> "true",
-          "content-type" -> "application/xml"
+          "content-type"     -> "application/xml"
         )
       )
       result.status shouldBe 400
