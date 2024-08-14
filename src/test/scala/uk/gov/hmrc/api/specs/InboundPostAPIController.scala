@@ -17,7 +17,7 @@
 package uk.gov.hmrc.api.specs
 
 import uk.gov.hmrc.api.client.HttpClient
-import play.api.libs.ws.DefaultBodyReadables.readableAsString
+import uk.gov.hmrc.api.utils.InboundSoapMessage.xmlBody
 
 class InboundPostAPIController extends BaseSpec, HttpClient:
 
@@ -28,7 +28,7 @@ class InboundPostAPIController extends BaseSpec, HttpClient:
       val result = await(
         post(
           url,
-          "<body/>",
+          xmlBody,
           "content-type"     -> "application/xml",
           "x-files-included" -> "true"
         )
@@ -41,7 +41,7 @@ class InboundPostAPIController extends BaseSpec, HttpClient:
       val result = await(
         post(
           url,
-          "<body/>",
+          xmlBody,
           "content-type" -> "application/xml"
         )
       )
