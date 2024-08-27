@@ -18,16 +18,28 @@ package uk.gov.hmrc.api.specs
 
 import uk.gov.hmrc.api.client.HttpClient
 import uk.gov.hmrc.api.utils.InboundSdesMessage.*
+import uk.gov.hmrc.api.utils.InboundSoapMessage.*
+
+import java.util.UUID
 
 class SdesCallbackController extends BaseSpec, HttpClient:
   Feature("User can test Inbound POST API for SDES notification") {
     Scenario("Inbound POST API handles successful SDES notification") {
       Given("The endpoint is accessed")
+      val id     = UUID.randomUUID().toString
+      val _      = await(
+        post(
+          host,
+          xmlBodyFromID(id),
+          "content-type"     -> "application/xml",
+          "x-files-included" -> "true"
+        )
+      )
       val url    = s"$host/services/crdl/callback"
       val result = await(
         post(
           url,
-          successJsonBody,
+          successJsonBodyFromString(id),
           "content-type" -> "application/json"
         )
       )

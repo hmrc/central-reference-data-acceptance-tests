@@ -19,13 +19,14 @@ package uk.gov.hmrc.api.utils
 import java.util.UUID
 
 object InboundSoapMessage {
-  val xmlBody: String =
-    """<MainMessage>
+  def xmlBody: String                         = xmlBodyFromID(UUID.randomUUID().toString)
+  def xmlBodyFromID(identify: String): String =
+    s"""<MainMessage>
        |      <Body>
        |        <TaskIdentifier>780912</TaskIdentifier>
        |        <AttributeName>ReferenceData</AttributeName>
        |        <MessageType>gZip</MessageType>
-       |        <IncludedBinaryObject>${UUID.randomUUID()}</IncludedBinaryObject>
+       |        <IncludedBinaryObject>$identify</IncludedBinaryObject>
        |        <MessageSender>CS/RD2</MessageSender>
        |      </Body>
        |    </MainMessage>""".stripMargin
