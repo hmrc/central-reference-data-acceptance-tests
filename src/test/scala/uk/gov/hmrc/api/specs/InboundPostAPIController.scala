@@ -18,34 +18,55 @@ package uk.gov.hmrc.api.specs
 
 import uk.gov.hmrc.api.client.HttpClient
 import uk.gov.hmrc.api.utils.InboundSoapMessage.xmlBody
+import scala.xml.XML
 
 class InboundPostAPIController extends BaseSpec, HttpClient:
 
   Feature("User can test the inbound post api public-soap-proxy") {
     Scenario("Central-reference-data-inbound-orchestrator endpoint works") {
       Given("The endpoint is accessed")
-      val url    = s"$host"
-      val result = await(
+      val url            = s"$host"
+      val body           = xmlBody
+      val result         = await(
         post(
           url,
-          xmlBody,
+          body,
           "content-type"     -> "application/xml",
           "x-files-included" -> "true"
         )
       )
       result.status shouldBe 202
+      val id             = (XML.loadString(body) \\ "IncludedBinaryObject").text.trim
+      val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
+      val wrapper_status = await(
+        get(
+          testOnlyUrl
+        )
+      )
+      wrapper_status.status        shouldBe 202
+      wrapper_status.body.toString shouldBe "Received"
     }
     Scenario("Return Bad Request if the x-files-included header is not present") {
       Given("The endpoint is not accessed")
-      val url    = s"$host"
-      val result = await(
+      val url            = s"$host"
+      val body           = xmlBody
+      val result         = await(
         post(
           url,
-          xmlBody,
+          body,
           "content-type" -> "application/xml"
         )
       )
       result.status shouldBe 400
+      val id             = (XML.loadString(body) \\ "IncludedBinaryObject").text.trim
+      val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
+      val wrapper_status = await(
+        get(
+          testOnlyUrl
+        )
+      )
+      wrapper_status.status        shouldBe 404
+      wrapper_status.body.toString shouldBe ""
     }
 
     Scenario("Return Bad Request if there is no XML content") {

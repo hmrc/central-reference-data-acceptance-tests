@@ -31,6 +31,12 @@ object TestConfiguration:
       case _       => s"${envConfig.getString(s"services.host")}"
     s"$host${serviceRoute(service)}"
 
+  def testOnlyUrl(service: String): String =
+    val host = env match
+      case "local" => s"$environmentHost:${servicePort(service)}"
+      case _       => s"${envConfig.getString(s"services.host")}"
+    s"$host/test-only"
+
   def environmentHost: String = envConfig.getString("services.host")
 
   def servicePort(serviceName: String): String = envConfig.getString(s"services.$serviceName.port")

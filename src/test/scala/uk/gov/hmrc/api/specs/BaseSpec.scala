@@ -26,7 +26,8 @@ import scala.concurrent.duration.Duration
 import scala.concurrent.duration.*
 
 trait BaseSpec extends AnyFeatureSpec, GivenWhenThen, Matchers:
-  val host: String = TestConfiguration.url("central-reference-data-inbound-orchestrator")
+  val host: String         = TestConfiguration.url("central-reference-data-inbound-orchestrator")
+  val testOnlyHost: String = TestConfiguration.testOnlyUrl("central-reference-data-inbound-orchestrator")
 
   def await[T](f: Awaitable[T], timeout: Duration = 10.seconds): T =
     Await.result(f, timeout)
