@@ -1,3 +1,12 @@
 {
-  "add": []
+  "add": [
+    {
+      "reason": "testOnly endpoints are outside our ZAP test scope",
+      "contextId": 1,
+      "url": "^.*test-only.*",
+      "ruleId": 10021,
+      "newLevel": -1,
+      "urlIsRegex": true
+    }
+  ]
 }
