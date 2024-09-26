@@ -30,4 +30,25 @@ object InboundSoapMessage {
        |        <MessageSender>CS/RD2</MessageSender>
        |      </Body>
        |    </MainMessage>""".stripMargin
+
+  def xmlFullMessage: String                         = xmlFullMessageFromID(UUID.randomUUID().toString)
+  def xmlFullMessageFromID(identify: String): String =
+    s"""<S:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:S="http://www.w3.org/2003/05/soap-envelope">
+       |      <S:Header>
+       |        <Action xmlns="http://www.w3.org/2005/08/addressing">CCN2.Service.Customs.Default.CSRD.ReferenceDataSubmissionResultReceiverCBS/ReceiveReferenceDataSubmissionResult</Action>
+       |      </S:Header>
+       |      <S:Body>
+       |        <ReceiveReferenceDataSubmissionResult>
+       |          <MessageHeader>
+       |            <messageID>testMessageId123</messageID>
+       |            <messageName>test message name</messageName>
+       |            <sender>CS/RD2</sender>
+       |            <recipient>DPS</recipient>
+       |            <timeCreation>2023-10-03T16:00:00</timeCreation>
+       |          </MessageHeader>
+       |          <TaskIdentifier>TASKID12345</TaskIdentifier>
+       |          <IncludedBinaryObject>$identify</IncludedBinaryObject>
+       |        </ReceiveReferenceDataSubmissionResult>
+       |      </S:Body>
+       |    </S:Envelope>""".stripMargin
 }

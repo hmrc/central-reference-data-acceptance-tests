@@ -17,7 +17,7 @@
 package uk.gov.hmrc.api.specs
 
 import uk.gov.hmrc.api.client.HttpClient
-import uk.gov.hmrc.api.utils.InboundSoapMessage.xmlBody
+import uk.gov.hmrc.api.utils.InboundSoapMessage.xmlFullMessage
 import scala.xml.XML
 
 class InboundPostAPIController extends BaseSpec, HttpClient:
@@ -26,7 +26,7 @@ class InboundPostAPIController extends BaseSpec, HttpClient:
     Scenario("Central-reference-data-inbound-orchestrator endpoint works") {
       Given("The endpoint is accessed")
       val url            = s"$host"
-      val body           = xmlBody
+      val body           = xmlFullMessage
       val result         = await(
         post(
           url,
@@ -49,7 +49,7 @@ class InboundPostAPIController extends BaseSpec, HttpClient:
     Scenario("Return Bad Request if the x-files-included header is not present") {
       Given("The endpoint is not accessed")
       val url            = s"$host"
-      val body           = xmlBody
+      val body           = xmlFullMessage
       val result         = await(
         post(
           url,
