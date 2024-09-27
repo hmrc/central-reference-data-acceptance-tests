@@ -19,18 +19,6 @@ package uk.gov.hmrc.api.utils
 import java.util.UUID
 
 object InboundSoapMessage {
-  def xmlBody: String                         = xmlBodyFromID(UUID.randomUUID().toString)
-  def xmlBodyFromID(identify: String): String =
-    s"""<MainMessage>
-       |      <Body>
-       |        <TaskIdentifier>780912</TaskIdentifier>
-       |        <AttributeName>ReferenceData</AttributeName>
-       |        <MessageType>gZip</MessageType>
-       |        <IncludedBinaryObject>$identify</IncludedBinaryObject>
-       |        <MessageSender>CS/RD2</MessageSender>
-       |      </Body>
-       |    </MainMessage>""".stripMargin
-
   def xmlFullMessage: String                         = xmlFullMessageFromID(UUID.randomUUID().toString)
   def xmlFullMessageFromID(identify: String): String =
     s"""<S:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:S="http://www.w3.org/2003/05/soap-envelope">
