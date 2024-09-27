@@ -30,7 +30,7 @@ class SdesCallbackController extends BaseSpec, HttpClient:
       val _              = await(
         post(
           host,
-          xmlBodyFromID(id),
+          xmlFullMessageFromID(id),
           "content-type"     -> "application/xml",
           "x-files-included" -> "true"
         )
@@ -61,7 +61,7 @@ class SdesCallbackController extends BaseSpec, HttpClient:
       val _              = await(
         post(
           host,
-          xmlBodyFromID(id),
+          xmlFullMessageFromID(id),
           "content-type"     -> "application/xml",
           "x-files-included" -> "true"
         )
