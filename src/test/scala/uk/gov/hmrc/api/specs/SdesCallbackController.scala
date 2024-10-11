@@ -83,7 +83,7 @@ class SdesCallbackController extends BaseSpec, HttpClient:
         )
       )
       wrapper_status.status        shouldBe 202
-      wrapper_status.body.toString shouldBe "ScanPassed"
+      wrapper_status.body.toString shouldBe "Sent"
     }
 
     Scenario("Inbound POST API handles failure SDES notification") {
