@@ -17,8 +17,12 @@
 package uk.gov.hmrc.api.utils
 
 import java.util.UUID
+import java.time.{ZoneOffset, ZonedDateTime}
+import java.time.format.DateTimeFormatter
 
 object InboundSdesMessage:
+  private val iso8601DateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
+
   def successJsonBody: String = successJsonBodyFromString(UUID.randomUUID().toString)
 
   def successJsonBodyFromString(identify: String): String =
@@ -58,26 +62,15 @@ object InboundSdesMessage:
        |}
        |""".stripMargin
 
-    def fileProcessedJsonBody: String = fileProcessedJsonBodyFromString(UUID.randomUUID().toString)
+  def fileProcessedJsonBody: String = fileProcessedJsonBodyFromString(UUID.randomUUID().toString)
 
-    def fileProcessedJsonBodyFromString(identify: String): String =
-      s"""
-         |{
-         |"notification": "FileProcessed",
-         |"filename": "32f2c4f7-c635-45e0-bee2-0bdd97a4a70d.zip",
-         |"checksumAlgorithm": "md5",
-         |"checksum": "894bed34007114b82fa39e05197f9eec",
-         |"correlationID": "$identify",
-         |"dateTime": "2020-11-09T16:48:21.659Z",
-         |"properties": [
-         |{
-         |"name": "name1",
-         |"value": "value1"
-         |},
-         |{
-         |"name": "name2",
-         |"value": "value2"
-         |}
-         |]
-         |}
-         |""".stripMargin
+  def fileProcessedJsonBodyFromString(identify: String): String =
+    s"""
+      |{
+      |"notification": "FileProcessed",
+      |"filename": "$identify.zip",
+      |"checksumAlgorithm": "md5",
+      |"correlationID": "$identify",
+      |"dateTime": "${iso8601DateTimeFormat.format(ZonedDateTime.now(ZoneOffset.UTC))}"
+      |}
+      |""".stripMargin
