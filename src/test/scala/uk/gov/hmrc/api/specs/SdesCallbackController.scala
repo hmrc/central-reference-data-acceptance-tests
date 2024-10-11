@@ -52,7 +52,38 @@ class SdesCallbackController extends BaseSpec, HttpClient:
         )
       )
       wrapper_status.status        shouldBe 202
-      wrapper_status.body.toString shouldBe "Sent"
+      wrapper_status.body.toString shouldBe "ScanPassed"
+    }
+
+    Scenario("Inbound POST API handles sent SDES notification") {
+      Given("The endpoint is accessed")
+      val id             = UUID.randomUUID().toString
+      val _              = await(
+        post(
+          host,
+          xmlFullMessageFromID(id),
+          "content-type"     -> "application/xml",
+          "x-files-included" -> "true"
+        )
+      )
+      val url            = s"$host/services/crdl/callback"
+      val result         = await(
+        post(
+          url,
+          fileProcessedJsonBodyFromString(id),
+          "content-type" -> "application/json"
+        )
+      )
+      result.status shouldBe 202
+      Thread.sleep(5500)
+      val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
+      val wrapper_status = await(
+        get(
+          testOnlyUrl
+        )
+      )
+      wrapper_status.status        shouldBe 202
+      wrapper_status.body.toString shouldBe "ScanPassed"
     }
 
     Scenario("Inbound POST API handles failure SDES notification") {
@@ -83,6 +114,6 @@ class SdesCallbackController extends BaseSpec, HttpClient:
         )
       )
       wrapper_status.status        shouldBe 202
-      wrapper_status.body.toString shouldBe "Failed"
+      wrapper_status.body.toString shouldBe "ScanFailed"
     }
   }
