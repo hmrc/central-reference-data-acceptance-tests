@@ -44,6 +44,7 @@ class SdesCallbackController extends BaseSpec, HttpClient:
         )
       )
       result.status shouldBe 202
+      // The code being run is asynchronous,we need to sleep to make sure that it has finished processing.otherwise we do not see anything different when we check the state.
       Thread.sleep(5500)
       val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
       val wrapper_status = await(
@@ -75,6 +76,7 @@ class SdesCallbackController extends BaseSpec, HttpClient:
         )
       )
       result.status shouldBe 202
+      // The code being run is asynchronous,we need to sleep to make sure that it has finished processing.otherwise we do not see anything different when we check the state.
       Thread.sleep(5500)
       val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
       val wrapper_status = await(
