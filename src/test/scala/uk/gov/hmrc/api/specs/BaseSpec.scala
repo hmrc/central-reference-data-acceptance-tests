@@ -16,18 +16,22 @@
 
 package uk.gov.hmrc.api.specs
 
+import org.scalatest.GivenWhenThen
+import org.scalatest.concurrent.Eventually
 import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.matchers.should.Matchers
-import org.scalatest.GivenWhenThen
+import org.scalatest.time.{Millis, Span}
 import uk.gov.hmrc.api.conf.TestConfiguration
 
-import scala.concurrent.{Await, Awaitable, Future}
-import scala.concurrent.duration.Duration
 import scala.concurrent.duration.*
+import scala.concurrent.{Await, Awaitable}
 
-trait BaseSpec extends AnyFeatureSpec, GivenWhenThen, Matchers:
+trait BaseSpec extends AnyFeatureSpec, GivenWhenThen, Matchers, Eventually:
   val host: String         = TestConfiguration.url("central-reference-data-inbound-orchestrator")
   val testOnlyHost: String = TestConfiguration.testOnlyUrl("central-reference-data-inbound-orchestrator")
+
+  // This configuration determines how long `eventually` will wait for its assertions to become true
+  override given patienceConfig: PatienceConfig = PatienceConfig(timeout = Span(5500, Millis))
 
   def await[T](f: Awaitable[T], timeout: Duration = 10.seconds): T =
     Await.result(f, timeout)

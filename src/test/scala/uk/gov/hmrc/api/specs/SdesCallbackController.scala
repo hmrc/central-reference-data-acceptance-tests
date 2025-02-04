@@ -26,8 +26,8 @@ class SdesCallbackController extends BaseSpec, HttpClient:
   Feature("User can test Inbound POST API for SDES notification") {
     Scenario("Inbound POST API handles successful SDES notification") {
       Given("The endpoint is accessed")
-      val id             = UUID.randomUUID().toString
-      val _              = await(
+      val id     = UUID.randomUUID().toString
+      val _      = await(
         post(
           host,
           xmlFullMessageFromID(id),
@@ -35,8 +35,8 @@ class SdesCallbackController extends BaseSpec, HttpClient:
           "x-files-included" -> "true"
         )
       )
-      val url            = s"$host/services/crdl/callback"
-      val result         = await(
+      val url    = s"$host/services/crdl/callback"
+      val result = await(
         post(
           url,
           successJsonBodyFromString(id),
@@ -44,22 +44,22 @@ class SdesCallbackController extends BaseSpec, HttpClient:
         )
       )
       result.status shouldBe 202
-      // The code being run is asynchronous,we need to sleep to make sure that it has finished processing.otherwise we do not see anything different when we check the state.
-      Thread.sleep(5500)
-      val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
-      val wrapper_status = await(
-        get(
-          testOnlyUrl
+      eventually {
+        val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
+        val wrapper_status = await(
+          get(
+            testOnlyUrl
+          )
         )
-      )
-      wrapper_status.status        shouldBe 202
-      wrapper_status.body.toString shouldBe "ScanPassed"
+        wrapper_status.status        shouldBe 202
+        wrapper_status.body.toString shouldBe "ScanPassed"
+      }
     }
 
     Scenario("Inbound POST API handles sent SDES notification") {
       Given("The endpoint is accessed")
-      val id             = UUID.randomUUID().toString
-      val _              = await(
+      val id     = UUID.randomUUID().toString
+      val _      = await(
         post(
           host,
           xmlFullMessageFromID(id),
@@ -67,8 +67,8 @@ class SdesCallbackController extends BaseSpec, HttpClient:
           "x-files-included" -> "true"
         )
       )
-      val url            = s"$host/services/crdl/callback"
-      val result         = await(
+      val url    = s"$host/services/crdl/callback"
+      val result = await(
         post(
           url,
           fileProcessedJsonBodyFromString(id),
@@ -76,16 +76,16 @@ class SdesCallbackController extends BaseSpec, HttpClient:
         )
       )
       result.status shouldBe 202
-      // The code being run is asynchronous,we need to sleep to make sure that it has finished processing.otherwise we do not see anything different when we check the state.
-      Thread.sleep(5500)
-      val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
-      val wrapper_status = await(
-        get(
-          testOnlyUrl
+      eventually {
+        val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
+        val wrapper_status = await(
+          get(
+            testOnlyUrl
+          )
         )
-      )
-      wrapper_status.status        shouldBe 202
-      wrapper_status.body.toString shouldBe "Sent"
+        wrapper_status.status        shouldBe 202
+        wrapper_status.body.toString shouldBe "Sent"
+      }
     }
 
     Scenario("Inbound POST API handles failure SDES notification") {
