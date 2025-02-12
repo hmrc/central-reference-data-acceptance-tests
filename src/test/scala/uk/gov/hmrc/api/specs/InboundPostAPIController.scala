@@ -36,7 +36,7 @@ class InboundPostAPIController extends BaseSpec, HttpClient:
         )
       )
       result.status shouldBe 202
-      val id             = (XML.loadString(body) \\ "IncludedBinaryObject").text.trim
+      val id             = (XML.loadString(body) \\ "ReceiveReferenceDataRequestResult").text.trim
       val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
       val wrapper_status = await(
         get(
@@ -58,7 +58,7 @@ class InboundPostAPIController extends BaseSpec, HttpClient:
         )
       )
       result.status shouldBe 400
-      val id             = (XML.loadString(body) \\ "IncludedBinaryObject").text.trim
+      val id             = (XML.loadString(body) \\ "ReceiveReferenceDataRequestResult").text.trim
       val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
       val wrapper_status = await(
         get(
