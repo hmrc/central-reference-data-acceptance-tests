@@ -17,7 +17,8 @@
 package uk.gov.hmrc.api.specs
 
 import uk.gov.hmrc.api.client.HttpClient
-import uk.gov.hmrc.api.utils.InboundSoapMessage.xmlFullMessage
+import uk.gov.hmrc.api.utils.InboundSoapMessage.{xmlFullMessage, xmlFullMessageErrorReport}
+
 import scala.xml.XML
 
 class InboundPostAPIController extends BaseSpec, HttpClient:
@@ -67,6 +68,30 @@ class InboundPostAPIController extends BaseSpec, HttpClient:
       )
       wrapper_status.status        shouldBe 404
       wrapper_status.body.toString shouldBe ""
+    }
+
+    Scenario("Central-reference-data-inbound-orchestrator endpoint works for ErrorReport Case") {
+      Given("The endpoint is accessed")
+      val url            = s"$host"
+      val body           = xmlFullMessageErrorReport
+      val result         = await(
+        post(
+          url,
+          body,
+          "content-type"     -> "application/xml",
+          "x-files-included" -> "true"
+        )
+      )
+      result.status shouldBe 202
+      val id             = (XML.loadString(body) \\ "ErrorReport").text.trim
+      val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
+      val wrapper_status = await(
+        get(
+          testOnlyUrl
+        )
+      )
+      wrapper_status.status        shouldBe 202
+      wrapper_status.body.toString shouldBe "Received"
     }
 
     Scenario("Return Bad Request if there is no XML content") {
