@@ -119,3 +119,67 @@ class SdesCallbackController extends BaseSpec, HttpClient:
       wrapper_status.body.toString shouldBe "ScanFailed"
     }
   }
+
+  Scenario("Inbound POST API handles successful SDES notification for ErrorReport case") {
+    Given("The endpoint is accessed")
+    val id     = UUID.randomUUID().toString
+    val _      = await(
+      post(
+        host,
+        xmlFullMessageFromIDErrorReport(id),
+        "content-type"     -> "application/xml",
+        "x-files-included" -> "true"
+      )
+    )
+    val url    = s"$host/services/crdl/callback"
+    val result = await(
+      post(
+        url,
+        successJsonBodyFromString(id),
+        "content-type" -> "application/json"
+      )
+    )
+    result.status shouldBe 202
+    eventually {
+      val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
+      val wrapper_status = await(
+        get(
+          testOnlyUrl
+        )
+      )
+      wrapper_status.status        shouldBe 202
+      wrapper_status.body.toString shouldBe "ScanPassed"
+    }
+  }
+
+  Scenario("Inbound POST API handles sent SDES notification for ErrorReport case") {
+    Given("The endpoint is accessed")
+    val id     = UUID.randomUUID().toString
+    val _      = await(
+      post(
+        host,
+        xmlFullMessageFromIDErrorReport(id),
+        "content-type"     -> "application/xml",
+        "x-files-included" -> "true"
+      )
+    )
+    val url    = s"$host/services/crdl/callback"
+    val result = await(
+      post(
+        url,
+        fileProcessedJsonBodyFromString(id),
+        "content-type" -> "application/json"
+      )
+    )
+    result.status shouldBe 202
+    eventually {
+      val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
+      val wrapper_status = await(
+        get(
+          testOnlyUrl
+        )
+      )
+      wrapper_status.status        shouldBe 202
+      wrapper_status.body.toString shouldBe "Sent"
+    }
+  }
