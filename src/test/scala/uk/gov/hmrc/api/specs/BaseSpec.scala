@@ -21,14 +21,14 @@ import org.scalatest.concurrent.Eventually
 import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.time.{Millis, Span}
-import uk.gov.hmrc.api.conf.TestConfiguration
+import uk.gov.hmrc.api.conf.TestEnvironment
 
 import scala.concurrent.duration.*
 import scala.concurrent.{Await, Awaitable}
 
 trait BaseSpec extends AnyFeatureSpec, GivenWhenThen, Matchers, Eventually:
-  val host: String         = TestConfiguration.url("central-reference-data-inbound-orchestrator")
-  val testOnlyHost: String = TestConfiguration.testOnlyUrl("central-reference-data-inbound-orchestrator")
+  val host: String         = TestEnvironment.url("central-reference-data-inbound-orchestrator")
+  val testOnlyHost: String = TestEnvironment.url("test-only")
 
   // This configuration determines how long `eventually` will wait for its assertions to become true
   override given patienceConfig: PatienceConfig = PatienceConfig(timeout = Span(5500, Millis))
