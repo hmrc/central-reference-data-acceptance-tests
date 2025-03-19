@@ -17,7 +17,7 @@
 package uk.gov.hmrc.api.specs
 
 import uk.gov.hmrc.api.client.HttpClient
-import uk.gov.hmrc.api.utils.InboundSoapMessage.{xmlFullMessage, xmlFullMessageErrorReport}
+import uk.gov.hmrc.api.utils.InboundSoapMessage.{xmlFullMessage, xmlFullMessageErrorReport, xmlFullMessageIsAlive, xmlFullMessageIsAliveWithInvalidMessage}
 
 import scala.xml.XML
 
@@ -92,6 +92,32 @@ class InboundPostAPIController extends BaseSpec, HttpClient:
       )
       wrapper_status.status        shouldBe 202
       wrapper_status.body.toString shouldBe "Received"
+    }
+
+    Scenario("isAlive Health Check works successfully") {
+      Given("The endpoint is accessed")
+      val url    = s"$host"
+      val body   = xmlFullMessageIsAlive
+      val result = await(
+        post(
+          url,
+          body
+        )
+      )
+      result.status shouldBe 200
+    }
+
+    Scenario("isAlive Health Check returns 400 with invalid message") {
+      Given("The endpoint is accessed")
+      val url    = s"$host"
+      val body   = xmlFullMessageIsAliveWithInvalidMessage
+      val result = await(
+        post(
+          url,
+          body
+        )
+      )
+      result.status shouldBe 400
     }
 
     Scenario("Return Bad Request if there is no XML content") {
