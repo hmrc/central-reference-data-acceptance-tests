@@ -83,6 +83,7 @@ object InboundSoapMessage {
          |      </soap:Body>
          |    </soap:Envelope>""".stripMargin
 
+
   def xmlFullMessageIsAliveWithInvalidMessage: String =
     s"""<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope"
        |     xmlns:v1="http://xmlns.ec.eu/BusinessMessages/TATAFng/Monitoring/V1">
