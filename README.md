@@ -1,8 +1,6 @@
-**This is the template README. Please update this with project specific content.**
-
 # central-reference-data-acceptance-tests
 
-<SERVICE_NAME> API tests.
+CRDL API tests.
 
 ## Pre-requisites
 
