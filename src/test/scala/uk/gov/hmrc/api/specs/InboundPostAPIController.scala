@@ -17,10 +17,11 @@
 package uk.gov.hmrc.api.specs
 
 import uk.gov.hmrc.api.client.HttpClient
-import uk.gov.hmrc.api.utils.InboundSoapMessage.{xmlFullMessage, xmlFullMessageErrorReport, xmlFullMessageIsAlive, xmlFullMessageIsAliveWithInvalidMessage, xmlOutboundResponseMessageIsAlive}
+import uk.gov.hmrc.api.utils.InboundSoapMessage.{xmlFullMessage, xmlFullMessageErrorReport, xmlFullMessageIsAlive, xmlFullMessageIsAliveWithInvalidMessage}
 
 import scala.xml.{Elem, XML}
 import play.api.libs.ws.XMLBodyReadables.*
+import uk.gov.hmrc.api.utils.OutboundSoapMessage.xmlOutboundResponseMessageIsAlive
 
 class InboundPostAPIController extends BaseSpec, HttpClient:
 

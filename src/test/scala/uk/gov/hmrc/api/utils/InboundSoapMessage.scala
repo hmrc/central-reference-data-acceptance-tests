@@ -83,17 +83,6 @@ object InboundSoapMessage {
          |      </soap:Body>
          |    </soap:Envelope>""".stripMargin
 
-  def xmlOutboundResponseMessageIsAlive: String =
-    s"""<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope"
-         |     xmlns:v1="http://xmlns.ec.eu/BusinessMessages/TATAFng/Monitoring/V1">
-         |      <soap:Header>
-         |        <Action xmlns="http://www.w3.org/2005/08/addressing">CCN2.Service.Customs.Default.CSRD.ReferenceDataExportReceiverCBS/IsAliveResponse</Action>
-         |      </soap:Header>
-         |      <soap:Body>
-         |        <v1:isAliveRespMsg />
-         |      </soap:Body>
-         |    </soap:Envelope>""".stripMargin
-
   def xmlFullMessageIsAliveWithInvalidMessage: String =
     s"""<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope"
        |     xmlns:v1="http://xmlns.ec.eu/BusinessMessages/TATAFng/Monitoring/V1">
