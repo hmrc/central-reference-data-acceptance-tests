@@ -56,10 +56,10 @@ class SdesCallbackController extends BaseSpec, HttpClient:
       }
     }
 
-    Scenario("Inbound POST API handles sent SDES notification") {
+    Scenario("Inbound POST API handles duplicate successful SDES notification") {
       Given("The endpoint is accessed")
-      val id     = UUID.randomUUID().toString
-      val _      = await(
+      val id             = UUID.randomUUID().toString
+      val _              = await(
         post(
           host,
           xmlFullMessageFromID(id),
@@ -67,15 +67,111 @@ class SdesCallbackController extends BaseSpec, HttpClient:
           "x-files-included" -> "true"
         )
       )
-      val url    = s"$host/services/crdl/callback"
-      val result = await(
+      val url            = s"$host/services/crdl/callback"
+      val successResult1 = await(
+        post(
+          url,
+          successJsonBodyFromString(id),
+          "content-type" -> "application/json"
+        )
+      )
+      successResult1.status shouldBe 202
+      val successResult2 = await(
+        post(
+          url,
+          successJsonBodyFromString(id),
+          "content-type" -> "application/json"
+        )
+      )
+      successResult2.status shouldBe 404
+      eventually {
+        val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
+        val wrapper_status = await(
+          get(
+            testOnlyUrl
+          )
+        )
+        wrapper_status.status        shouldBe 202
+        wrapper_status.body.toString shouldBe "ScanPassed"
+      }
+    }
+
+    Scenario("Inbound POST API handles sent SDES notification") {
+      Given("The endpoint is accessed")
+      val id              = UUID.randomUUID().toString
+      val _               = await(
+        post(
+          host,
+          xmlFullMessageFromID(id),
+          "content-type"     -> "application/xml",
+          "x-files-included" -> "true"
+        )
+      )
+      val url             = s"$host/services/crdl/callback"
+      val passedResult    = await(
+        post(
+          url,
+          successJsonBodyFromString(id),
+          "content-type" -> "application/json"
+        )
+      )
+      passedResult.status shouldBe 202
+      val processedResult = await(
         post(
           url,
           fileProcessedJsonBodyFromString(id),
           "content-type" -> "application/json"
         )
       )
-      result.status shouldBe 202
+      processedResult.status shouldBe 202
+      eventually {
+        val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
+        val wrapper_status = await(
+          get(
+            testOnlyUrl
+          )
+        )
+        wrapper_status.status        shouldBe 202
+        wrapper_status.body.toString shouldBe "Sent"
+      }
+    }
+
+    Scenario("Inbound POST API handles duplicate sent SDES notification") {
+      Given("The endpoint is accessed")
+      val id               = UUID.randomUUID().toString
+      val _                = await(
+        post(
+          host,
+          xmlFullMessageFromID(id),
+          "content-type"     -> "application/xml",
+          "x-files-included" -> "true"
+        )
+      )
+      val url              = s"$host/services/crdl/callback"
+      val passedResult     = await(
+        post(
+          url,
+          successJsonBodyFromString(id),
+          "content-type" -> "application/json"
+        )
+      )
+      passedResult.status shouldBe 202
+      val processedResult1 = await(
+        post(
+          url,
+          fileProcessedJsonBodyFromString(id),
+          "content-type" -> "application/json"
+        )
+      )
+      processedResult1.status shouldBe 202
+      val processedResult2 = await(
+        post(
+          url,
+          fileProcessedJsonBodyFromString(id),
+          "content-type" -> "application/json"
+        )
+      )
+      processedResult2.status shouldBe 404
       eventually {
         val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
         val wrapper_status = await(
@@ -152,10 +248,10 @@ class SdesCallbackController extends BaseSpec, HttpClient:
     }
   }
 
-  Scenario("Inbound POST API handles sent SDES notification for ErrorReport case") {
+  Scenario("Inbound POST API handles duplicate successful SDES notification for ErrorReport case") {
     Given("The endpoint is accessed")
-    val id     = UUID.randomUUID().toString
-    val _      = await(
+    val id             = UUID.randomUUID().toString
+    val _              = await(
       post(
         host,
         xmlFullMessageFromIDErrorReport(id),
@@ -163,15 +259,111 @@ class SdesCallbackController extends BaseSpec, HttpClient:
         "x-files-included" -> "true"
       )
     )
-    val url    = s"$host/services/crdl/callback"
-    val result = await(
+    val url            = s"$host/services/crdl/callback"
+    val successResult1 = await(
+      post(
+        url,
+        successJsonBodyFromString(id),
+        "content-type" -> "application/json"
+      )
+    )
+    successResult1.status shouldBe 202
+    val successResult2 = await(
+      post(
+        url,
+        successJsonBodyFromString(id),
+        "content-type" -> "application/json"
+      )
+    )
+    successResult2.status shouldBe 404
+    eventually {
+      val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
+      val wrapper_status = await(
+        get(
+          testOnlyUrl
+        )
+      )
+      wrapper_status.status        shouldBe 202
+      wrapper_status.body.toString shouldBe "ScanPassed"
+    }
+  }
+
+  Scenario("Inbound POST API handles sent SDES notification for ErrorReport case") {
+    Given("The endpoint is accessed")
+    val id              = UUID.randomUUID().toString
+    val _               = await(
+      post(
+        host,
+        xmlFullMessageFromIDErrorReport(id),
+        "content-type"     -> "application/xml",
+        "x-files-included" -> "true"
+      )
+    )
+    val url             = s"$host/services/crdl/callback"
+    val passedResult    = await(
+      post(
+        url,
+        successJsonBodyFromString(id),
+        "content-type" -> "application/json"
+      )
+    )
+    passedResult.status shouldBe 202
+    val processedResult = await(
       post(
         url,
         fileProcessedJsonBodyFromString(id),
         "content-type" -> "application/json"
       )
     )
-    result.status shouldBe 202
+    processedResult.status shouldBe 202
+    eventually {
+      val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
+      val wrapper_status = await(
+        get(
+          testOnlyUrl
+        )
+      )
+      wrapper_status.status        shouldBe 202
+      wrapper_status.body.toString shouldBe "Sent"
+    }
+  }
+
+  Scenario("Inbound POST API handles duplicate sent SDES notification for ErrorReport case") {
+    Given("The endpoint is accessed")
+    val id               = UUID.randomUUID().toString
+    val _                = await(
+      post(
+        host,
+        xmlFullMessageFromIDErrorReport(id),
+        "content-type"     -> "application/xml",
+        "x-files-included" -> "true"
+      )
+    )
+    val url              = s"$host/services/crdl/callback"
+    val passedResult     = await(
+      post(
+        url,
+        successJsonBodyFromString(id),
+        "content-type" -> "application/json"
+      )
+    )
+    passedResult.status shouldBe 202
+    val processedResult1 = await(
+      post(
+        url,
+        fileProcessedJsonBodyFromString(id),
+        "content-type" -> "application/json"
+      )
+    )
+    processedResult1.status shouldBe 202
+    val processedResult2 = await(
+      post(
+        url,
+        fileProcessedJsonBodyFromString(id),
+        "content-type" -> "application/json"
+      )
+    )
+    processedResult2.status shouldBe 404
     eventually {
       val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
       val wrapper_status = await(
