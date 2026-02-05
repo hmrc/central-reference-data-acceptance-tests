@@ -19,6 +19,7 @@ package uk.gov.hmrc.api.specs
 import uk.gov.hmrc.api.client.HttpClient
 import uk.gov.hmrc.api.utils.InboundSdesMessage.*
 import uk.gov.hmrc.api.utils.InboundSoapMessage.*
+import org.scalactic.Prettifier.default
 
 import java.util.UUID
 
@@ -159,6 +160,70 @@ class SdesCallbackController extends BaseSpec, HttpClient:
       post(
         host,
         xmlFullMessageFromIDErrorReport(id),
+        "content-type"     -> "application/xml",
+        "x-files-included" -> "true"
+      )
+    )
+    val url    = s"$host/services/crdl/callback"
+    val result = await(
+      post(
+        url,
+        fileProcessedJsonBodyFromString(id),
+        "content-type" -> "application/json"
+      )
+    )
+    result.status shouldBe 202
+    eventually {
+      val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
+      val wrapper_status = await(
+        get(
+          testOnlyUrl
+        )
+      )
+      wrapper_status.status        shouldBe 202
+      wrapper_status.body.toString shouldBe "Sent"
+    }
+  }
+
+  Scenario("Inbound POST API handles successful SDES notification for Subscription ErrorReport case") {
+    Given("The endpoint is accessed")
+    val id     = UUID.randomUUID().toString
+    val _      = await(
+      post(
+        host,
+        xmlFullMessageFromIDSubscriptionErrorReport(id),
+        "content-type"     -> "application/xml",
+        "x-files-included" -> "true"
+      )
+    )
+    val url    = s"$host/services/crdl/callback"
+    val result = await(
+      post(
+        url,
+        successJsonBodyFromString(id),
+        "content-type" -> "application/json"
+      )
+    )
+    result.status shouldBe 202
+    eventually {
+      val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
+      val wrapper_status = await(
+        get(
+          testOnlyUrl
+        )
+      )
+      wrapper_status.status        shouldBe 202
+      wrapper_status.body.toString shouldBe "ScanPassed"
+    }
+  }
+
+  Scenario("Inbound POST API handles sent SDES notification for Subscription ErrorReport case") {
+    Given("The endpoint is accessed")
+    val id     = UUID.randomUUID().toString
+    val _      = await(
+      post(
+        host,
+        xmlFullMessageFromIDSubscriptionErrorReport(id),
         "content-type"     -> "application/xml",
         "x-files-included" -> "true"
       )

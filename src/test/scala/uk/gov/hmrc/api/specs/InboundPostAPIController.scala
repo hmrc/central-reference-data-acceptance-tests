@@ -17,7 +17,7 @@
 package uk.gov.hmrc.api.specs
 
 import uk.gov.hmrc.api.client.HttpClient
-import uk.gov.hmrc.api.utils.InboundSoapMessage.{xmlFullMessage, xmlFullMessageErrorReport, xmlFullMessageIsAlive, xmlFullMessageIsAliveWithInvalidMessage}
+import uk.gov.hmrc.api.utils.InboundSoapMessage.{xmlFullMessage, xmlFullMessageErrorReport, xmlFullMessageIsAlive, xmlFullMessageIsAliveWithInvalidMessage, xmlFullSubscriptionChangeMessage, xmlFullSubscriptionErrorReportMessage}
 
 import scala.xml.{Elem, XML}
 import play.api.libs.ws.XMLBodyReadables.*
@@ -49,6 +49,46 @@ class InboundPostAPIController extends BaseSpec, HttpClient:
       wrapper_status.status        shouldBe 202
       wrapper_status.body.toString shouldBe "Received"
     }
+
+    Scenario("Central-reference-data-inbound-orchestrator subscription change message endpoint works") {
+      Given("The endpoint is accessed")
+      val url    = s"$host"
+      val body   = xmlFullSubscriptionChangeMessage
+      val result = await(
+        post(
+          url,
+          body,
+          "content-type"     -> "application/xml",
+          "x-files-included" -> "true"
+        )
+      )
+      result.status shouldBe 202
+    }
+
+    Scenario("Central-reference-data-inbound-orchestrator subscription error report message endpoint works") {
+      Given("The endpoint is accessed")
+      val url            = s"$host"
+      val body           = xmlFullSubscriptionErrorReportMessage
+      val result         = await(
+        post(
+          url,
+          body,
+          "content-type"     -> "application/xml",
+          "x-files-included" -> "true"
+        )
+      )
+      result.status shouldBe 202
+      val id             = (XML.loadString(body) \\ "MessageID").head.text.trim.stripPrefix("uuid:")
+      val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
+      val wrapper_status = await(
+        get(
+          testOnlyUrl
+        )
+      )
+      wrapper_status.status        shouldBe 202
+      wrapper_status.body.toString shouldBe "Received"
+    }
+
     Scenario("Return Bad Request if the x-files-included header is not present") {
       Given("The endpoint is not accessed")
       val url            = s"$host"
