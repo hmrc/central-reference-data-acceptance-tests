@@ -10,12 +10,6 @@ Make sure you have MongoDB 7.x or later.
 
 ### Services
 
-Start a MongoDB Docker container:
-
-```bash
-docker run --rm -d -p 27017:27017 --name mongo percona/percona-server-mongodb:5.0
-```
-
 Start all CRDL services via Service Manager 2:
 
 ```bash
