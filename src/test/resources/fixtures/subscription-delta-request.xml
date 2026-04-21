@@ -1,0 +1,1261 @@
+<S:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:S="http://www.w3.org/2003/05/soap-envelope">
+<S:Header>
+<To xmlns="http://www.w3.org/2005/08/addressing">partner:CCN2.Partner.XI.Customs.TAXUD/CSRDv3.APIPDEV</To>
+<Action S:mustUnderstand="true" xmlns="http://www.w3.org/2005/08/addressing">CCN2.Service.Customs.Default.CSRD.ReferenceDataSubscriptionReceiverCBS/ReceiveReferenceData</Action>
+<ReplyTo xmlns="http://www.w3.org/2005/08/addressing">
+<Address>http://www.w3.org/2005/08/addressing/anonymous</Address>
+</ReplyTo>
+<FaultTo xmlns="http://www.w3.org/2005/08/addressing">
+<Address>http://www.w3.org/2005/08/addressing/anonymous</Address>
+</FaultTo>
+<MessageID xmlns="http://www.w3.org/2005/08/addressing">uuid:3a61bf1c-1062-4457-98c7-f7a6945cb215</MessageID>
+<From xmlns="http://www.w3.org/2005/08/addressing">
+<Address>partner:CCN2.Partner.EU.Customs.TAXUD/CSRD.TestConsumer</Address>
+</From>
+<ccnm:MessageHeader xmlns:ccnm="http://ccn2.ec.eu/CCN2.Service.Platform.Common.Schema">
+<ccnm:Version>1.0</ccnm:Version>
+<ccnm:SendingDateAndTime>2026-04-15T11:02:19.624Z</ccnm:SendingDateAndTime>
+<ccnm:MessageType>CCN2.Service.Customs.Default.CSRD.ReferenceDataSubscriptionReceiverCBS/ReceiveReferenceData</ccnm:MessageType>
+</ccnm:MessageHeader>
+<work:WorkContext xmlns:work="http://oracle.com/weblogic/soap/workarea/">rO0ABXoAAAFuADJ3ZWJsb2dpYy5hcHAudGF0YWZuZy1jb25maWd1cmF0aW9uLXdlYi1zZXJ2aWNlLWVhcgAAANYAAAAjd2VibG9naWMud29ya2FyZWEuU3RyaW5nV29ya0NvbnRleHQACHYyLjcuMS4xAC13ZWJsb2dpYy5hcHAudGF0YWZuZy1zZXJ2aWNlLXJlZ2lzdHJ5LXdlYi1lYXIAAADWAAAAI3dlYmxvZ2ljLndvcmthcmVhLlN0cmluZ1dvcmtDb250ZXh0AAh2Mi43LjEuMQAmd2VibG9naWMuZGlhZ25vc3RpY3MuRGlhZ25vc3RpY0NvbnRleHQAAAF/AAAAMndlYmxvZ2ljLmRpYWdub3N0aWNzLmNvbnRleHQuRGlhZ25vc3RpY0NvbnRleHRJbXBsAAAAMHw5NDNjNmQ5YS1jNjljLTQ2ZjQtYjk3Ny00Zjk3Y2RiMzg4Y2QtMDAwMDAwMDh8fAAAAAIAAAAAAAAA</work:WorkContext>
+<wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+<wsu:Timestamp wsu:Id="Id-0001776250939752-000000002cb9a3d1-1" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+<wsu:Created>2026-04-15T11:02:19Z</wsu:Created>
+<wsu:Expires>2026-04-15T11:17:19Z</wsu:Expires>
+</wsu:Timestamp>
+<wsse:BinarySecurityToken wsu:Id="Id-0001776250939752-ffffffffc9f9f9d5-1" ValueType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3" EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+MIIJGzCCBwOgAwIBAgIUfQXHYHlA3O3a4XV6SmBnCbPKuiIwDQYJKoZIhvcNAQELBQAwgaYxJjAk
+BgkqhkiG9w0BCQEWF3RheHVkLWxpc29AZWMuZXVyb3BhLmV1MRkwFwYDVQQDDBBERyBUQVhVRCBQ
+Uk9EIENBMREwDwYDVQQLDAhERyBUQVhVRDEcMBoGA1UECgwTRXVyb3BlYW4gQ29tbWlzc2lvbjER
+MA8GA1UEBwwIQnJ1c3NlbHMxEDAOBgNVBAgMB0JlbGdpdW0xCzAJBgNVBAYTAkJFMB4XDTI1MTAz
+MDEyNDAwM1oXDTI2MTIwMTEyNDAwMlowgZAxHDAaBgNVBAMME3Mycy5jb25mLmNjbjIudGF4dWQx
+ETAPBgNVBAsMCERHIFRBWFVEMQ0wCwYDVQQLDARDQ04yMRwwGgYDVQQKDBNFdXJvcGVhbiBDb21t
+aXNzaW9uMREwDwYDVQQHDAhCcnVzc2VsczEQMA4GA1UECAwHQmVsZ2l1bTELMAkGA1UEBhMCQkUw
+ggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDHabWLRIiZKtqYU05oo4jODuB7L5PW0bRj
+Dl+Lyjos87R5V3t642NaWnP9EDE/KviIrBvXQnh9+DCIiZMVlNQSNDiRgobJdWhG+iC4nrHfTW+V
+9DkPVkFasTaM43t7lexcmhddXqVyx2QsLYw44cPB6grZKtv1OqwzQS35VbjUygBIFHVXW0FCEmaf
+nwnsgYmJjKfEPIQXrT+mBw/SPE55u8JTo4ilfCoUWzjdDa95fR0c6W0oRvFlaRXdPM/VWwcZA3vY
+rL/EsOgbDpUctxdesHpFfYqrOk/yj/AHbS4mtJFZfBKwKlAx4VBI1dmBnA5yQz1hrTvjeVrjDFgM
+xV4TAgMBAAGjggRTMIIETzAMBgNVHRMBAf8EAjAAMB8GA1UdIwQYMBaAFIfTNrctjsG+zmTs2/4R
+OgfQFNKaMIGOBggrBgEFBQcBAQSBgTB/MEQGCCsGAQUFBzAChjhodHRwOi8vcGtpLnRheHVkLnNl
+cnZpY2VzLmVjLmV1cm9wYS5ldS9kZ3RheHVkcHJvZGNhLmNydDA3BggrBgEFBQcwAYYraHR0cDov
+L3BraS50YXh1ZC5zZXJ2aWNlcy5lYy5ldXJvcGEuZXUvb2NzcDCCAvIGA1UdEQSCAukwggLlghNz
+MnMuY29uZi5jY24yLnRheHVkghZhdC1zMnMuY29uZi5jY24yLnRheHVkghZiZS1zMnMuY29uZi5j
+Y24yLnRheHVkghZiZy1zMnMuY29uZi5jY24yLnRheHVkghZjeS1zMnMuY29uZi5jY24yLnRheHVk
+ghZjei1zMnMuY29uZi5jY24yLnRheHVkghZkZS1zMnMuY29uZi5jY24yLnRheHVkghZkay1zMnMu
+Y29uZi5jY24yLnRheHVkghZlZS1zMnMuY29uZi5jY24yLnRheHVkghZlcy1zMnMuY29uZi5jY24y
+LnRheHVkghZmaS1zMnMuY29uZi5jY24yLnRheHVkghZmci1zMnMuY29uZi5jY24yLnRheHVkghZn
+Yi1zMnMuY29uZi5jY24yLnRheHVkghZ1ay1zMnMuY29uZi5jY24yLnRheHVkghZnci1zMnMuY29u
+Zi5jY24yLnRheHVkghZlbC1zMnMuY29uZi5jY24yLnRheHVkghZoci1zMnMuY29uZi5jY24yLnRh
+eHVkghZodS1zMnMuY29uZi5jY24yLnRheHVkghZpZS1zMnMuY29uZi5jY24yLnRheHVkghZpdC1z
+MnMuY29uZi5jY24yLnRheHVkghZsdC1zMnMuY29uZi5jY24yLnRheHVkghZsdS1zMnMuY29uZi5j
+Y24yLnRheHVkghZsdi1zMnMuY29uZi5jY24yLnRheHVkghZtdC1zMnMuY29uZi5jY24yLnRheHVk
+ghZubC1zMnMuY29uZi5jY24yLnRheHVkghZwbC1zMnMuY29uZi5jY24yLnRheHVkghZwdC1zMnMu
+Y29uZi5jY24yLnRheHVkghZyby1zMnMuY29uZi5jY24yLnRheHVkghZzZS1zMnMuY29uZi5jY24y
+LnRheHVkghZzaS1zMnMuY29uZi5jY24yLnRheHVkghZzay1zMnMuY29uZi5jY24yLnRheHVkMB0G
+A1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDATBJBgNVHR8EQjBAMD6gPKA6hjhodHRwOi8vcGtp
+LnRheHVkLnNlcnZpY2VzLmVjLmV1cm9wYS5ldS9kZ3RheHVkcHJvZGNhLmNybDAdBgNVHQ4EFgQU
+WMzDyym7OSHpRO7txRGxoWLP8+MwDgYDVR0PAQH/BAQDAgTwMA0GCSqGSIb3DQEBCwUAA4ICAQCB
+K7DnN9YR6V1jv2wm3VKi4jXy1+Vl6KR4ddbP3Aa6etiJ/QjRTDjVgRPsTcffWleXAXNK2d1WbiUp
+tw3cI72tfwK1fKskpYxL3OB3N0aZupap60kQTTmypZY/QDCf7JMUJRyS0NSpO8GVNppxzpePBIfW
+qJY257WRgrPxpRwNJa4o1VsZiUdwRq/DEelLq0bjnwwySZOnaNKOCxJHrOukiJ81ZSPjdC73aE20
+Hobtknu1eS7OoAC+yqN431PMOsXJ9oGI3jM72Booc/K6pmQBDR+Ew5IQ7Q7uLNGtjE6b4JlDJXUd
+I5Sj/N5LtbRcH7EUGEA7GeLOwmb0xNtanXf+31hSOSytVCYa2xCjNAuHrmW8E1vD/KnwqFfaw38+
+fqGTNd/3lnYI2V0LUilgV9jFCWA7eJUHzxQVVLBX3uummlTNq8BbCfCcAeKg6dfHTkEsH1L2d1vz
+zXxSDDoGdp+4JWxsSYmRs0cdjNwy9L0adD2i9hqqBCRSf4sv92w2eYqohQWZ85iKLPYLOTY0ii03
+vUpspuwemE2LRz9dSldkFAKNBBE2508RNP7ptb096DZSo61TdQnKEMRnp/WvYynmuqyMUmH7qgQB
+mILvEaTf5hnk5wmHhU9hBdmq72uu4fNNxU6g1/d2fC2Wnde60CNpE0J9qb+viuDMzDPyZYKK+w==
+</wsse:BinarySecurityToken>
+<saml:Assertion ID="Id-3b70df69ff2a99a69e3e5b39-1" IssueInstant="2026-04-15T11:02:19Z" Version="2.0" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">
+<saml:Issuer Format="urn:oasis:names:tc:SAML:1.1:nameid-format:X509SubjectName">CN=users,CN=security,DC=ccn2,DC=eu</saml:Issuer>
+<saml:Subject>
+<saml:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified">csrd2.application</saml:NameID>
+<saml:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:sender-vouches"/>
+</saml:Subject>
+<saml:Conditions NotBefore="2026-04-15T10:57:19Z" NotOnOrAfter="2026-04-15T11:12:19Z"/>
+<saml:AuthnStatement AuthnInstant="2026-04-15T11:02:19Z">
+<saml:AuthnContext>
+<saml:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:Password</saml:AuthnContextClassRef>
+</saml:AuthnContext>
+</saml:AuthnStatement>
+<saml:AttributeStatement>
+<saml:Attribute Name="uid" NameFormat="urn:vordel:attribute:1.0">
+<saml:AttributeValue>csrd2.application</saml:AttributeValue>
+</saml:Attribute>
+<saml:Attribute Name="c" NameFormat="urn:vordel:attribute:1.0">
+<saml:AttributeValue>EU</saml:AttributeValue>
+</saml:Attribute>
+<saml:Attribute Name="role" NameFormat="urn:vordel:attribute:1.0">
+<saml:AttributeValue>CCN2.Role.CSRD2.WS</saml:AttributeValue>
+</saml:Attribute>
+<saml:Attribute Name="partnername" NameFormat="urn:vordel:attribute:1.0">
+<saml:AttributeValue>CCN2.Partner.EU.Customs.TAXUD</saml:AttributeValue>
+</saml:Attribute>
+</saml:AttributeStatement>
+</saml:Assertion>
+<dsig:Signature Id="Id-0001776250939752-ffffffffc9f9f9d5-2" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#">
+<dsig:SignedInfo>
+<dsig:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+<dsig:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+<dsig:Reference URI="#Id-3b70df69ff2a99a69e3e5b39-1">
+<dsig:Transforms>
+<dsig:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+</dsig:Transforms>
+<dsig:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+<dsig:DigestValue>csywFY/tjaFpCSFvM75QC2lXqt5TCzpRWQ48fGC66TY=</dsig:DigestValue>
+</dsig:Reference>
+<dsig:Reference URI="#Id-0001776250939752-ffffffffc9f9f9d5-1">
+<dsig:Transforms>
+<dsig:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+</dsig:Transforms>
+<dsig:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+<dsig:DigestValue>xem4LjXr68qVoyA8jfrdZiwbLXGCT9Fjn/qzutOgu0M=</dsig:DigestValue>
+</dsig:Reference>
+<dsig:Reference URI="#Id-0001776250939752-000000002cb9a3d1-1">
+<dsig:Transforms>
+<dsig:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+</dsig:Transforms>
+<dsig:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+<dsig:DigestValue>I4ifG5GxxyVXNlGluWk2Dmn8wRqZ/But5/bQZufx5DI=</dsig:DigestValue>
+</dsig:Reference>
+</dsig:SignedInfo>
+<dsig:SignatureValue>dDgeW9HF9G1NolWEq+ZwRbMkVkhoAyJ3dsJNUSOE3/0k3ZW4cJu3SXf1Wnx4YBaQ
+3ni4k+xizHMRuAkjq1OEFbDPCK9Wqwv4raRRWjcBqRsJPWnOuVZNDIOv5lzbDI4/
+4+PskJ3OCHe/kD+OlgXplp5puV7ioLmu7Fu4kGBC2csH4D4m2v8utiOLf5m7JVMD
+kxFH0VdpSuzn/THzI+qjDaZq6wSRK3lM8rGayqt7gdwDzPNc93FxID/8FU6S6urf
+pP8dIIYWggjJnO8CDrqkpkpMBot9xY/jAfqSGQbHhtRtNJO3zbdbeOUuIG+8Tdu0
+X3ONjc15w7U5W/Ghh6ZfaA==</dsig:SignatureValue>
+<dsig:KeyInfo Id="Id-0001776250939752-ffffffffc9f9f9d5-3">
+<wsse:SecurityTokenReference wsu:Id="Id-0001776250939752-ffffffffc9f9f9d5-4" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+<wsse:Reference URI="#Id-0001776250939752-ffffffffc9f9f9d5-1" ValueType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3"/>
+</wsse:SecurityTokenReference>
+</dsig:KeyInfo>
+</dsig:Signature>
+</wsse:Security>
+</S:Header>
+<S:Body>
+<ns24:ReceiveReferenceDataReqMsg xmlns:ns0="http://xmlns.ec.eu/BusinessObjects/CSRD2/ReferenceDataSubscriptionReceiverCBSServiceType/V4" xmlns:ns24="http://xmlns.ec.eu/CallbackService/CSRD2/IReferenceDataSubscriptionReceiverCBS/V4" xmlns:ns3="http://xmlns.ec.eu/BusinessObjects/CSRD2/CommonServiceType/V3" xmlns:ns9="http://xmlns.ec.eu/BusinessObjects/CSRD2/MessageHeaderType/V2" xmlns:ns10="http://xmlns.ec.eu/BusinessObjects/CSRD2/RDEntityEntryListType/V3" xmlns:ns12="http://xmlns.ec.eu/BusinessObjects/CSRD2/RDEntityType/V3" xmlns:ns15="http://xmlns.ec.eu/BusinessObjects/CSRD2/RDEntryType/V3" xmlns:ns16="http://xmlns.ec.eu/BusinessObjects/CSRD2/RDStatusType/V3" xmlns:ns17="http://xmlns.ec.eu/BusinessObjects/CSRD2/RDValidityPeriodType/V2" xmlns:ns7="http://xmlns.ec.eu/BusinessObjects/CSRD2/LsdListType/V2">
+<ns0:MessageHeader>
+<ns9:AddressingInformation>
+<ns9:messageID>065f5044-d011-456e-b82c-6f68dd989976</ns9:messageID>
+<ns9:attribute name="Event.MessageChannel">WS</ns9:attribute>
+</ns9:AddressingInformation>
+<ns9:AdditionalInformation>
+<ns9:attribute name="Subscriber">HMRC</ns9:attribute>
+<ns9:attribute name="Subscription">HMRC-CSRD2-NCTS-P6</ns9:attribute>
+<ns9:attribute name="RDViewName">NCTS-P6</ns9:attribute>
+</ns9:AdditionalInformation>
+</ns0:MessageHeader>
+<ns0:RDEntityList>
+<ns10:RDEntity name="AdditionalReference">
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>invalid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>IM970242</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="DocumentType">Y053</ns15:dataItem>
+<ns15:LsdList>
+<ns7:description lang="en">Goods not concerned by labelling requirements on fluorinated greenhouse gases as referred to Article 12, paragraph 1 of Regulation (EU) No 517/2014</ns7:description>
+</ns15:LsdList>
+</ns12:RDEntry>
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>invalid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>IM970242</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="DocumentType">Y926</ns15:dataItem>
+<ns15:LsdList>
+<ns7:description lang="en">Goods other than those falling under the import prohibitions defined in Article 11.1 of Regulation (EU) N° 517/2014</ns7:description>
+</ns15:LsdList>
+</ns12:RDEntry>
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>invalid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>IM970242</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="DocumentType">Y950</ns15:dataItem>
+<ns15:LsdList>
+<ns7:description lang="en">Goods other than pre-charged equipment with hydrofluorocarbons, as defined in article 14.1 of Regulation (EU) No 517/2014</ns7:description>
+</ns15:LsdList>
+</ns12:RDEntry>
+</ns10:RDEntity>
+<ns10:RDEntity name="CountryCodesForAddress">
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>valid</ns16:state>
+<ns16:activeFrom>2026-04-15</ns16:activeFrom>
+<ns16:changeJustification>revert dummy change</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="CountryCode">AL</ns15:dataItem>
+<ns15:LsdList>
+<ns7:description lang="en">Albania</ns7:description>
+</ns15:LsdList>
+</ns12:RDEntry>
+</ns10:RDEntity>
+<ns10:RDEntity name="CountryCodesFullList">
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>valid</ns16:state>
+<ns16:activeFrom>2026-04-15</ns16:activeFrom>
+<ns16:changeJustification>revert dummy change</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="CountryCode">AL</ns15:dataItem>
+<ns15:dataItem name="TccEntryDate">19000101</ns15:dataItem>
+<ns15:dataItem name="NctsEntryDate">19000101</ns15:dataItem>
+<ns15:dataItem name="GeoNomenclatureCode">070</ns15:dataItem>
+<ns15:dataItem name="CountryRegimeCode">OTH</ns15:dataItem>
+<ns15:LsdList>
+<ns7:description lang="en">Albania</ns7:description>
+</ns15:LsdList>
+</ns12:RDEntry>
+</ns10:RDEntity>
+<ns10:RDEntity name="CountryCodesWithAddress">
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>valid</ns16:state>
+<ns16:activeFrom>2026-04-15</ns16:activeFrom>
+<ns16:changeJustification>revert dummy change</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="CountryCode">AL</ns15:dataItem>
+<ns15:LsdList>
+<ns7:description lang="en">Albania</ns7:description>
+</ns15:LsdList>
+</ns12:RDEntry>
+</ns10:RDEntity>
+<ns10:RDEntity name="CustomsOfficeEnquiry">
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>valid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>Schober; Ergänzung von Rollen</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="ReferenceNumber">DE005813</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeLsd">
+<ns15:dataItem name="LanguageCode">DE</ns15:dataItem>
+<ns15:dataItem name="CustomsOfficeUsualName">für Zertifizierungszwecke</ns15:dataItem>
+</ns15:dataGroup>
+</ns12:RDEntry>
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>valid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>Schober; Ergänzung von Rollen</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="ReferenceNumber">DE005863</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeLsd">
+<ns15:dataItem name="LanguageCode">DE</ns15:dataItem>
+<ns15:dataItem name="CustomsOfficeUsualName">Zertifizierung</ns15:dataItem>
+</ns15:dataGroup>
+</ns12:RDEntry>
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>valid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>Schober; Ergänzung von Rollen</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="ReferenceNumber">DE005814</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeLsd">
+<ns15:dataItem name="LanguageCode">DE</ns15:dataItem>
+<ns15:dataItem name="CustomsOfficeUsualName">für Probebetriebszwecke</ns15:dataItem>
+</ns15:dataGroup>
+</ns12:RDEntry>
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>valid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>Schober; Ergänzung von Rollen</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="ReferenceNumber">DE005864</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeLsd">
+<ns15:dataItem name="LanguageCode">DE</ns15:dataItem>
+<ns15:dataItem name="CustomsOfficeUsualName">Probebetrieb</ns15:dataItem>
+</ns15:dataGroup>
+</ns12:RDEntry>
+</ns10:RDEntity>
+<ns10:RDEntity name="CustomsOfficeEnquiryOrRecovery">
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>valid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>Schober; Ergänzung von Rollen</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="ReferenceNumber">DE005813</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeLsd">
+<ns15:dataItem name="LanguageCode">DE</ns15:dataItem>
+<ns15:dataItem name="CustomsOfficeUsualName">für Zertifizierungszwecke</ns15:dataItem>
+</ns15:dataGroup>
+</ns12:RDEntry>
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>valid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>Schober; Ergänzung von Rollen</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="ReferenceNumber">DE005863</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeLsd">
+<ns15:dataItem name="LanguageCode">DE</ns15:dataItem>
+<ns15:dataItem name="CustomsOfficeUsualName">Zertifizierung</ns15:dataItem>
+</ns15:dataGroup>
+</ns12:RDEntry>
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>valid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>Schober; Ergänzung von Rollen</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="ReferenceNumber">DE005814</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeLsd">
+<ns15:dataItem name="LanguageCode">DE</ns15:dataItem>
+<ns15:dataItem name="CustomsOfficeUsualName">für Probebetriebszwecke</ns15:dataItem>
+</ns15:dataGroup>
+</ns12:RDEntry>
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>valid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>Schober; Ergänzung von Rollen</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="ReferenceNumber">DE005864</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeLsd">
+<ns15:dataItem name="LanguageCode">DE</ns15:dataItem>
+<ns15:dataItem name="CustomsOfficeUsualName">Probebetrieb</ns15:dataItem>
+</ns15:dataGroup>
+</ns12:RDEntry>
+</ns10:RDEntity>
+<ns10:RDEntity name="CustomsOfficeGuarantee">
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>valid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>Schober; Ergänzung von Rollen</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="ReferenceNumber">DE005813</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeLsd">
+<ns15:dataItem name="LanguageCode">DE</ns15:dataItem>
+<ns15:dataItem name="CustomsOfficeUsualName">für Zertifizierungszwecke</ns15:dataItem>
+</ns15:dataGroup>
+</ns12:RDEntry>
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>valid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>Schober; Ergänzung von Rollen</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="ReferenceNumber">DE005863</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeLsd">
+<ns15:dataItem name="LanguageCode">DE</ns15:dataItem>
+<ns15:dataItem name="CustomsOfficeUsualName">Zertifizierung</ns15:dataItem>
+</ns15:dataGroup>
+</ns12:RDEntry>
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>valid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>Schober; Ergänzung von Rollen</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="ReferenceNumber">DE005814</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeLsd">
+<ns15:dataItem name="LanguageCode">DE</ns15:dataItem>
+<ns15:dataItem name="CustomsOfficeUsualName">für Probebetriebszwecke</ns15:dataItem>
+</ns15:dataGroup>
+</ns12:RDEntry>
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>valid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>Schober; Ergänzung von Rollen</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="ReferenceNumber">DE005864</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeLsd">
+<ns15:dataItem name="LanguageCode">DE</ns15:dataItem>
+<ns15:dataItem name="CustomsOfficeUsualName">Probebetrieb</ns15:dataItem>
+</ns15:dataGroup>
+</ns12:RDEntry>
+</ns10:RDEntity>
+<ns10:RDEntity name="CustomsOfficeRecovery">
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>valid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>Schober; Ergänzung von Rollen</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="ReferenceNumber">DE005813</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeLsd">
+<ns15:dataItem name="LanguageCode">DE</ns15:dataItem>
+<ns15:dataItem name="CustomsOfficeUsualName">für Zertifizierungszwecke</ns15:dataItem>
+</ns15:dataGroup>
+</ns12:RDEntry>
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>valid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>Schober; Ergänzung von Rollen</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="ReferenceNumber">DE005863</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeLsd">
+<ns15:dataItem name="LanguageCode">DE</ns15:dataItem>
+<ns15:dataItem name="CustomsOfficeUsualName">Zertifizierung</ns15:dataItem>
+</ns15:dataGroup>
+</ns12:RDEntry>
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>valid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>Schober; Ergänzung von Rollen</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="ReferenceNumber">DE005814</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeLsd">
+<ns15:dataItem name="LanguageCode">DE</ns15:dataItem>
+<ns15:dataItem name="CustomsOfficeUsualName">für Probebetriebszwecke</ns15:dataItem>
+</ns15:dataGroup>
+</ns12:RDEntry>
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>valid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>Schober; Ergänzung von Rollen</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="ReferenceNumber">DE005864</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeLsd">
+<ns15:dataItem name="LanguageCode">DE</ns15:dataItem>
+<ns15:dataItem name="CustomsOfficeUsualName">Probebetrieb</ns15:dataItem>
+</ns15:dataGroup>
+</ns12:RDEntry>
+</ns10:RDEntity>
+<ns10:RDEntity name="CustomsOffices">
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>valid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>Schober; Ergänzung von Rollen</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="ReferenceNumber">DE005813</ns15:dataItem>
+<ns15:dataItem name="ReferenceNumberMainOffice">DE005813</ns15:dataItem>
+<ns15:dataItem name="ReferenceNumberHigherAuthority">DE001800</ns15:dataItem>
+<ns15:dataItem name="CountryCode">DE</ns15:dataItem>
+<ns15:dataItem name="UnLocodeId">WEI</ns15:dataItem>
+<ns15:dataItem name="RegionCode">BY</ns15:dataItem>
+<ns15:dataItem name="PostalCode">92637</ns15:dataItem>
+<ns15:dataItem name="PhoneNumber">+49 961 39177-100</ns15:dataItem>
+<ns15:dataItem name="FaxNumber">+49 961 39177-666666</ns15:dataItem>
+<ns15:dataItem name="GeoInfoCode">Q</ns15:dataItem>
+<ns15:dataItem name="TraderDedicated">0</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeLsd">
+<ns15:dataItem name="LanguageCode">DE</ns15:dataItem>
+<ns15:dataItem name="CustomsOfficeUsualName">für Zertifizierungszwecke</ns15:dataItem>
+<ns15:dataItem name="StreetAndNumber">Dr.-Pfleger-Straße 36</ns15:dataItem>
+<ns15:dataItem name="City">Weiden i.d. Oberpfalz</ns15:dataItem>
+<ns15:dataItem name="PrefixSuffixLevel">A</ns15:dataItem>
+<ns15:dataItem name="PrefixSuffixFlag">0</ns15:dataItem>
+<ns15:dataItem name="PrefixSuffixName">Hauptzollamt 5813</ns15:dataItem>
+<ns15:dataItem name="SpaceToAdd">1</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeTimetable">
+<ns15:dataItem name="SeasonCode">1</ns15:dataItem>
+<ns15:dataItem name="SeasonName">ganzjährig</ns15:dataItem>
+<ns15:dataItem name="SeasonStartDate">20211216</ns15:dataItem>
+<ns15:dataItem name="SeasonEndDate">20991231</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeTimetableLine">
+<ns15:dataItem name="DayInTheWeekBeginDay">1</ns15:dataItem>
+<ns15:dataItem name="OpeningHoursTimeFirstPeriodFrom">0000</ns15:dataItem>
+<ns15:dataItem name="OpeningHoursTimeFirstPeriodTo">2359</ns15:dataItem>
+<ns15:dataItem name="DayInTheWeekEndDay">7</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">ACE</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">ACP</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">ACR</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">ACT</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">AWB</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">CCA</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">CCL</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">CGU</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">CVA</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">CWP</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">DPO</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">EIR</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">ENQ</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">ETD</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">EUS</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">EXC</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">GUA</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">IPO</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">IPR</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">OPO</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">RCA</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">REC</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">RRG</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">RSS</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">SAS</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">SCO</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">SDE</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">SSE</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">TEA</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">TRD</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">TST</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+</ns15:dataGroup>
+</ns15:dataGroup>
+</ns12:RDEntry>
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>valid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>Schober; Ergänzung von Rollen</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="ReferenceNumber">DE005863</ns15:dataItem>
+<ns15:dataItem name="ReferenceNumberMainOffice">DE005863</ns15:dataItem>
+<ns15:dataItem name="ReferenceNumberHigherAuthority">DE001800</ns15:dataItem>
+<ns15:dataItem name="CountryCode">DE</ns15:dataItem>
+<ns15:dataItem name="UnLocodeId">WEI</ns15:dataItem>
+<ns15:dataItem name="RegionCode">BY</ns15:dataItem>
+<ns15:dataItem name="PostalCode">92637</ns15:dataItem>
+<ns15:dataItem name="PhoneNumber">+49 961 39177-100</ns15:dataItem>
+<ns15:dataItem name="FaxNumber">+49 961 39177-101</ns15:dataItem>
+<ns15:dataItem name="EMailAddress">zertifizierung.gzd@zoll.bund.de</ns15:dataItem>
+<ns15:dataItem name="GeoInfoCode">Q</ns15:dataItem>
+<ns15:dataItem name="TraderDedicated">0</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeLsd">
+<ns15:dataItem name="LanguageCode">DE</ns15:dataItem>
+<ns15:dataItem name="CustomsOfficeUsualName">Zertifizierung</ns15:dataItem>
+<ns15:dataItem name="StreetAndNumber">Dr.-Pfleger-Str. 36</ns15:dataItem>
+<ns15:dataItem name="City">Weiden i.d.OPf.</ns15:dataItem>
+<ns15:dataItem name="PrefixSuffixLevel">A</ns15:dataItem>
+<ns15:dataItem name="PrefixSuffixFlag">0</ns15:dataItem>
+<ns15:dataItem name="PrefixSuffixName">Hauptzollamt</ns15:dataItem>
+<ns15:dataItem name="SpaceToAdd">1</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeTimetable">
+<ns15:dataItem name="SeasonCode">1</ns15:dataItem>
+<ns15:dataItem name="SeasonName">ganzjährig</ns15:dataItem>
+<ns15:dataItem name="SeasonStartDate">20211216</ns15:dataItem>
+<ns15:dataItem name="SeasonEndDate">20991231</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeTimetableLine">
+<ns15:dataItem name="DayInTheWeekBeginDay">1</ns15:dataItem>
+<ns15:dataItem name="OpeningHoursTimeFirstPeriodFrom">0000</ns15:dataItem>
+<ns15:dataItem name="OpeningHoursTimeFirstPeriodTo">2359</ns15:dataItem>
+<ns15:dataItem name="DayInTheWeekEndDay">7</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">ACE</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">ACP</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">ACR</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">ACT</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">AWB</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">CCA</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">CCL</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">CGU</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">CVA</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">CWP</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">DPO</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">EIR</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">ENQ</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">ETD</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">EUS</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">EXC</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">GUA</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">IPO</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">IPR</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">OPO</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">RCA</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">REC</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">RRG</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">RSS</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">SAS</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">SCO</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">SDE</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">SSE</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">TEA</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">TRD</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">TST</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+</ns15:dataGroup>
+</ns15:dataGroup>
+</ns12:RDEntry>
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>valid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>Schober; Ergänzung von Rollen</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="ReferenceNumber">DE005814</ns15:dataItem>
+<ns15:dataItem name="ReferenceNumberMainOffice">DE005814</ns15:dataItem>
+<ns15:dataItem name="ReferenceNumberHigherAuthority">DE001800</ns15:dataItem>
+<ns15:dataItem name="CountryCode">DE</ns15:dataItem>
+<ns15:dataItem name="UnLocodeId">WEI</ns15:dataItem>
+<ns15:dataItem name="RegionCode">BY</ns15:dataItem>
+<ns15:dataItem name="PostalCode">92637</ns15:dataItem>
+<ns15:dataItem name="PhoneNumber">+49 961 39177-100</ns15:dataItem>
+<ns15:dataItem name="FaxNumber">+49 228 303-98756</ns15:dataItem>
+<ns15:dataItem name="GeoInfoCode">Q</ns15:dataItem>
+<ns15:dataItem name="TraderDedicated">0</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeLsd">
+<ns15:dataItem name="LanguageCode">DE</ns15:dataItem>
+<ns15:dataItem name="CustomsOfficeUsualName">für Probebetriebszwecke</ns15:dataItem>
+<ns15:dataItem name="StreetAndNumber">Dr.-Pfleger-Straße 36</ns15:dataItem>
+<ns15:dataItem name="City">Weiden i.d. Oberpfalz</ns15:dataItem>
+<ns15:dataItem name="PrefixSuffixLevel">A</ns15:dataItem>
+<ns15:dataItem name="PrefixSuffixFlag">0</ns15:dataItem>
+<ns15:dataItem name="PrefixSuffixName">Hauptzollamt 5814</ns15:dataItem>
+<ns15:dataItem name="SpaceToAdd">1</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeTimetable">
+<ns15:dataItem name="SeasonCode">1</ns15:dataItem>
+<ns15:dataItem name="SeasonName">ganzjährig</ns15:dataItem>
+<ns15:dataItem name="SeasonStartDate">20211216</ns15:dataItem>
+<ns15:dataItem name="SeasonEndDate">20991231</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeTimetableLine">
+<ns15:dataItem name="DayInTheWeekBeginDay">1</ns15:dataItem>
+<ns15:dataItem name="OpeningHoursTimeFirstPeriodFrom">0000</ns15:dataItem>
+<ns15:dataItem name="OpeningHoursTimeFirstPeriodTo">2359</ns15:dataItem>
+<ns15:dataItem name="DayInTheWeekEndDay">7</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">ACE</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">ACP</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">ACR</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">ACT</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">AWB</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">CCA</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">CCL</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">CGU</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">CVA</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">CWP</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">DPO</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">EIR</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">ENQ</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">ETD</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">EUS</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">EXC</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">GUA</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">IPO</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">IPR</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">OPO</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">RCA</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">REC</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">RRG</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">RSS</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">SAS</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">SCO</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">SDE</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">SSE</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">TEA</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">TRD</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">TST</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+</ns15:dataGroup>
+</ns15:dataGroup>
+</ns12:RDEntry>
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>valid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>Schober; Ergänzung von Rollen</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="ReferenceNumber">DE005864</ns15:dataItem>
+<ns15:dataItem name="ReferenceNumberMainOffice">DE005864</ns15:dataItem>
+<ns15:dataItem name="ReferenceNumberHigherAuthority">DE001800</ns15:dataItem>
+<ns15:dataItem name="CountryCode">DE</ns15:dataItem>
+<ns15:dataItem name="UnLocodeId">WEI</ns15:dataItem>
+<ns15:dataItem name="RegionCode">BY</ns15:dataItem>
+<ns15:dataItem name="PostalCode">92637</ns15:dataItem>
+<ns15:dataItem name="PhoneNumber">+49 961 39177-100</ns15:dataItem>
+<ns15:dataItem name="FaxNumber">+49 961 39177-101</ns15:dataItem>
+<ns15:dataItem name="EMailAddress">zertifizierung.gzd@zoll.bund.de</ns15:dataItem>
+<ns15:dataItem name="GeoInfoCode">Q</ns15:dataItem>
+<ns15:dataItem name="TraderDedicated">0</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeLsd">
+<ns15:dataItem name="LanguageCode">DE</ns15:dataItem>
+<ns15:dataItem name="CustomsOfficeUsualName">Probebetrieb</ns15:dataItem>
+<ns15:dataItem name="StreetAndNumber">Dr.-Pfleger-Str. 36</ns15:dataItem>
+<ns15:dataItem name="City">Weiden i.d.OPf.</ns15:dataItem>
+<ns15:dataItem name="PrefixSuffixLevel">A</ns15:dataItem>
+<ns15:dataItem name="PrefixSuffixFlag">0</ns15:dataItem>
+<ns15:dataItem name="PrefixSuffixName">Hauptzollamt</ns15:dataItem>
+<ns15:dataItem name="SpaceToAdd">1</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeTimetable">
+<ns15:dataItem name="SeasonCode">1</ns15:dataItem>
+<ns15:dataItem name="SeasonName">ganzjährig</ns15:dataItem>
+<ns15:dataItem name="SeasonStartDate">20211216</ns15:dataItem>
+<ns15:dataItem name="SeasonEndDate">20991231</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeTimetableLine">
+<ns15:dataItem name="DayInTheWeekBeginDay">1</ns15:dataItem>
+<ns15:dataItem name="OpeningHoursTimeFirstPeriodFrom">0000</ns15:dataItem>
+<ns15:dataItem name="OpeningHoursTimeFirstPeriodTo">2359</ns15:dataItem>
+<ns15:dataItem name="DayInTheWeekEndDay">7</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">ACE</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">ACP</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">ACR</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">ACT</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">AWB</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">CCA</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">CCL</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">CGU</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">CVA</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">CWP</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">DPO</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">EIR</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">ENQ</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">ETD</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">EUS</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">EXC</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">GUA</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">IPO</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">IPR</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">OPO</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">RCA</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">REC</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">RRG</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">RSS</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">SAS</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">SCO</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">SDE</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">SSE</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">TEA</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">TRD</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">TST</ns15:dataItem>
+<ns15:dataItem name="TrafficType">N/A</ns15:dataItem>
+</ns15:dataGroup>
+</ns15:dataGroup>
+</ns15:dataGroup>
+</ns12:RDEntry>
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>valid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>Rule C500 test</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="ReferenceNumber">HU101140</ns15:dataItem>
+<ns15:dataItem name="ReferenceNumberMainOffice">HU101000</ns15:dataItem>
+<ns15:dataItem name="ReferenceNumberHigherAuthority">HU100000</ns15:dataItem>
+<ns15:dataItem name="ReferenceNumberTakeOver">HU101000</ns15:dataItem>
+<ns15:dataItem name="ReferenceNumberCompetentAuthorityOfEnquiry">HU101000</ns15:dataItem>
+<ns15:dataItem name="ReferenceNumberCompetentAuthorityOfRecovery">HU101000</ns15:dataItem>
+<ns15:dataItem name="CountryCode">HU</ns15:dataItem>
+<ns15:dataItem name="RegionCode">KMR</ns15:dataItem>
+<ns15:dataItem name="NctsEntryDate">20031001</ns15:dataItem>
+<ns15:dataItem name="PostalCode">1089</ns15:dataItem>
+<ns15:dataItem name="PhoneNumber">+36/1-210-1993</ns15:dataItem>
+<ns15:dataItem name="FaxNumber">+36/1-210-1993</ns15:dataItem>
+<ns15:dataItem name="EMailAddress">vph10114@vam.gov.hu</ns15:dataItem>
+<ns15:dataItem name="GeoInfoCode">Q</ns15:dataItem>
+<ns15:dataItem name="TraderDedicated">0</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeLsd">
+<ns15:dataItem name="LanguageCode">HU</ns15:dataItem>
+<ns15:dataItem name="CustomsOfficeUsualName">Dél-Pest térségi VPH Nehiti SZH</ns15:dataItem>
+<ns15:dataItem name="StreetAndNumber">Bláthy O. u. 3-5.</ns15:dataItem>
+<ns15:dataItem name="City">Budapest, VIII. ker.</ns15:dataItem>
+<ns15:dataItem name="PrefixSuffixFlag">0</ns15:dataItem>
+<ns15:dataItem name="SpaceToAdd">0</ns15:dataItem>
+</ns15:dataGroup>
+<ns15:dataGroup name="CustomsOfficeTimetable">
+<ns15:dataItem name="SeasonCode">1</ns15:dataItem>
+<ns15:dataItem name="SeasonStartDate">20260414</ns15:dataItem>
+<ns15:dataItem name="SeasonEndDate">20261231</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeTimetableLine">
+<ns15:dataItem name="DayInTheWeekBeginDay">1</ns15:dataItem>
+<ns15:dataItem name="OpeningHoursTimeFirstPeriodFrom">0800</ns15:dataItem>
+<ns15:dataItem name="OpeningHoursTimeFirstPeriodTo">1500</ns15:dataItem>
+<ns15:dataItem name="DayInTheWeekEndDay">5</ns15:dataItem>
+<ns15:dataGroup name="CustomsOfficeRoleTrafficCompetence">
+<ns15:dataItem name="Role">INC</ns15:dataItem>
+<ns15:dataItem name="TrafficType">R</ns15:dataItem>
+</ns15:dataGroup>
+</ns15:dataGroup>
+</ns15:dataGroup>
+</ns12:RDEntry>
+</ns10:RDEntity>
+<ns10:RDEntity name="DocumentTypeCommon">
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>invalid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>IM970242</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="DocumentType">C089</ns15:dataItem>
+<ns15:dataItem name="TransportDocument">0</ns15:dataItem>
+<ns15:LsdList>
+<ns7:description lang="en">Export authorisation - Vaccines against SARS-related coronaviruses (SARS-CoV species) and active substances, including master and working cell banks used for the manufacture of such vaccines</ns7:description>
+</ns15:LsdList>
+</ns12:RDEntry>
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>invalid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>IM970242</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="DocumentType">Y703</ns15:dataItem>
+<ns15:dataItem name="TransportDocument">0</ns15:dataItem>
+<ns15:LsdList>
+<ns7:description lang="en">Goods not concerned by Regulation (EU) 2023/1100</ns7:description>
+</ns15:LsdList>
+</ns12:RDEntry>
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>invalid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>IM970242</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="DocumentType">Y844</ns15:dataItem>
+<ns15:dataItem name="TransportDocument">0</ns15:dataItem>
+<ns15:LsdList>
+<ns7:description lang="en">Goods not released for free circulation in Bulgaria, Hungary, Poland, Romania or Slovakia</ns7:description>
+</ns15:LsdList>
+</ns12:RDEntry>
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>invalid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>IM970242</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="DocumentType">Y053</ns15:dataItem>
+<ns15:dataItem name="TransportDocument">0</ns15:dataItem>
+<ns15:LsdList>
+<ns7:description lang="en">Goods not concerned by labelling requirements on fluorinated greenhouse gases as referred to Article 12, paragraph 1 of Regulation (EU) No 517/2014</ns7:description>
+</ns15:LsdList>
+</ns12:RDEntry>
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>invalid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>IM970242</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="DocumentType">Y926</ns15:dataItem>
+<ns15:dataItem name="TransportDocument">0</ns15:dataItem>
+<ns15:LsdList>
+<ns7:description lang="en">Goods other than those falling under the import prohibitions defined in Article 11.1 of Regulation (EU) N° 517/2014</ns7:description>
+</ns15:LsdList>
+</ns12:RDEntry>
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>invalid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>IM970242</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="DocumentType">Y950</ns15:dataItem>
+<ns15:dataItem name="TransportDocument">0</ns15:dataItem>
+<ns15:LsdList>
+<ns7:description lang="en">Goods other than pre-charged equipment with hydrofluorocarbons, as defined in article 14.1 of Regulation (EU) No 517/2014</ns7:description>
+</ns15:LsdList>
+</ns12:RDEntry>
+</ns10:RDEntity>
+<ns10:RDEntity name="Nationality">
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>valid</ns16:state>
+<ns16:activeFrom>2026-04-15</ns16:activeFrom>
+<ns16:changeJustification>revert dummy change</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="CountryCode">AL</ns15:dataItem>
+<ns15:LsdList>
+<ns7:description lang="en">Albania</ns7:description>
+</ns15:LsdList>
+</ns12:RDEntry>
+</ns10:RDEntity>
+<ns10:RDEntity name="RequestedDocumentType">
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>invalid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>IM970242</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="DocumentType">Y053</ns15:dataItem>
+<ns15:dataItem name="TransportDocument">0</ns15:dataItem>
+<ns15:LsdList>
+<ns7:description lang="en">Goods not concerned by labelling requirements on fluorinated greenhouse gases as referred to Article 12, paragraph 1 of Regulation (EU) No 517/2014</ns7:description>
+</ns15:LsdList>
+</ns12:RDEntry>
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>invalid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>IM970242</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="DocumentType">Y926</ns15:dataItem>
+<ns15:dataItem name="TransportDocument">0</ns15:dataItem>
+<ns15:LsdList>
+<ns7:description lang="en">Goods other than those falling under the import prohibitions defined in Article 11.1 of Regulation (EU) N° 517/2014</ns7:description>
+</ns15:LsdList>
+</ns12:RDEntry>
+<ns12:RDEntry>
+<ns15:RDEntryStatus>
+<ns16:state>invalid</ns16:state>
+<ns16:activeFrom>2026-04-14</ns16:activeFrom>
+<ns16:changeJustification>IM970242</ns16:changeJustification>
+</ns15:RDEntryStatus>
+<ns15:dataItem name="DocumentType">Y950</ns15:dataItem>
+<ns15:dataItem name="TransportDocument">0</ns15:dataItem>
+<ns15:LsdList>
+<ns7:description lang="en">Goods other than pre-charged equipment with hydrofluorocarbons, as defined in article 14.1 of Regulation (EU) No 517/2014</ns7:description>
+</ns15:LsdList>
+</ns12:RDEntry>
+</ns10:RDEntity>
+</ns0:RDEntityList>
+</ns24:ReceiveReferenceDataReqMsg>
+</S:Body>
+</S:Envelope>
