@@ -20,7 +20,7 @@ import java.util.UUID
 
 object InboundSoapMessage {
 
-  val xmlString =
+  val xmlString: String =
     scala.io.Source
       .fromResource("fixtures/subscription-delta-request.xml")
       .mkString
