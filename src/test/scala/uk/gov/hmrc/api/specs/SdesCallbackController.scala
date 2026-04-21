@@ -121,7 +121,7 @@ class SdesCallbackController extends BaseSpec, HttpClient:
     }
   }
 
-  Scenario("Inbound POST API handles successful SDES notification for ErrorReport case") {
+  Scenario("Inbound POST API handles successful SDES notification for Full Extract ErrorReport case") {
     Given("The endpoint is accessed")
     val id     = UUID.randomUUID().toString
     val _      = await(
@@ -153,7 +153,7 @@ class SdesCallbackController extends BaseSpec, HttpClient:
     }
   }
 
-  Scenario("Inbound POST API handles sent SDES notification for ErrorReport case") {
+  Scenario("Inbound POST API handles sent SDES notification for Full Extract ErrorReport case") {
     Given("The endpoint is accessed")
     val id     = UUID.randomUUID().toString
     val _      = await(
@@ -191,7 +191,7 @@ class SdesCallbackController extends BaseSpec, HttpClient:
     val _      = await(
       post(
         host,
-        xmlFullMessageFromIDSubscriptionErrorReport(id),
+        xmlSubscriptionErrorReportFromID(id),
         "content-type"     -> "application/xml",
         "x-files-included" -> "true"
       )
@@ -223,7 +223,7 @@ class SdesCallbackController extends BaseSpec, HttpClient:
     val _      = await(
       post(
         host,
-        xmlFullMessageFromIDSubscriptionErrorReport(id),
+        xmlSubscriptionErrorReportFromID(id),
         "content-type"     -> "application/xml",
         "x-files-included" -> "true"
       )

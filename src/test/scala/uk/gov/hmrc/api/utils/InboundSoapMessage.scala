@@ -19,13 +19,19 @@ package uk.gov.hmrc.api.utils
 import java.util.UUID
 
 object InboundSoapMessage {
+
+  val xmlString =
+    scala.io.Source
+      .fromResource("fixtures/subscription-delta-request.xml")
+      .mkString
+
   def xmlFullMessage: String = xmlFullMessageFromID(UUID.randomUUID().toString)
 
   def xmlFullMessageErrorReport: String = xmlFullMessageFromIDErrorReport(UUID.randomUUID().toString)
 
-  def xmlFullSubscriptionChangeMessage: String = xmlFullMessageFromIDChangeMessage(UUID.randomUUID().toString)
+  def xmlSubscriptionDeltaRequest: String = xmlSubscriptionDeltaRequestFromID(UUID.randomUUID().toString)
 
-  def xmlFullSubscriptionErrorReportMessage: String = xmlFullMessageFromIDSubscriptionErrorReport(
+  def xmlSubscriptionErrorReportMessage: String = xmlSubscriptionErrorReportFromID(
     UUID.randomUUID().toString
   )
 
@@ -53,90 +59,35 @@ object InboundSoapMessage {
        |      </soap:Body>
        |    </soap:Envelope>""".stripMargin
 
-  def xmlFullMessageFromIDChangeMessage(identify: String): String =
-    s"""<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope"
-       |               xmlns:csrd="http://xmlns.ec.eu/CallbackService/CSRD2/IReferenceDataSubscriptionReceiverCBS/V4"
-       |               xmlns:msg="http://xmlns.ec.eu/BusinessObjects/CSRD2/ReferenceDataSubscriptionReceiverCBSServiceType/V4"
-       |               xmlns:hdr="http://xmlns.ec.eu/BusinessObjects/CSRD2/MessageHeaderType/V2"
-       |               xmlns:rdlist="http://xmlns.ec.eu/BusinessObjects/CSRD2/RDEntityEntryListType/V3"
-       |               xmlns:rdentity="http://xmlns.ec.eu/BusinessObjects/CSRD2/RDEntityType/V3"
-       |               xmlns:rdentry="http://xmlns.ec.eu/BusinessObjects/CSRD2/RDEntryType/V3"
-       |               xmlns:rdstatus="http://xmlns.ec.eu/BusinessObjects/CSRD2/RDStatusType/V3"
-       |               xmlns:lsd="http://xmlns.ec.eu/BusinessObjects/CSRD2/LsdListType/V2">
-       |  <soap:Header>
-       |    <wsa:Action xmlns:wsa="http://www.w3.org/2005/08/addressing">
-       |      CCN2.Service.Customs.Default.CSRD.ReferenceDataSubscriptionReceiverCBS/ReceiveReferenceData
-       |    </wsa:Action>
-       |    <wsa:MessageID xmlns:wsa="http://www.w3.org/2005/08/addressing">
-       |      uuid:fffdec08-148c-4c2d-9e54-2c0c2a19df50
-       |    </wsa:MessageID>
-       |  </soap:Header>
-       |  <soap:Body>
-       |    <csrd:ReceiveReferenceDataReqMsg>
-       |      <msg:ReceiveReferenceDataRequestType>
-       |        <msg:MessageHeader>
-       |          <hdr:MessageID>MSG-2024-12-30-001</hdr:MessageID>
-       |          <hdr:MessageTimestamp>2024-12-30T10:30:00Z</hdr:MessageTimestamp>
-       |          <hdr:SenderID>CUSTOMS_AUTHORITY_UK</hdr:SenderID>
-       |          <hdr:ReceiverID>SUBSCRIBER_SYSTEM_01</hdr:ReceiverID>
-       |        </msg:MessageHeader>
-       |        <msg:RDEntityList>
-       |          <rdlist:RDEntity>
-       |            <rdentity:name>CountryCode</rdentity:name>
-       |            <rdentity:version>2024.1</rdentity:version>
-       |            <rdentity:RDEntry>
-       |              <rdentry:RDEntryStatus>
-       |                <rdstatus:status>Active</rdstatus:status>
-       |                <rdstatus:validFrom>2024-01-01</rdstatus:validFrom>
-       |              </rdentry:RDEntryStatus>
-       |              <rdentry:dataItem name="code">GB</rdentry:dataItem>
-       |              <rdentry:dataItem name="numericCode">826</rdentry:dataItem>
-       |              <rdentry:dataItem name="alpha3Code">GBR</rdentry:dataItem>
-       |              <rdentry:LsdList>
-       |                <lsd:Lsd>
-       |                  <lsd:languageCode>EN</lsd:languageCode>
-       |                  <lsd:description>United Kingdom</lsd:description>
-       |                </lsd:Lsd>
-       |                <lsd:Lsd>
-       |                  <lsd:languageCode>FR</lsd:languageCode>
-       |                  <lsd:description>Royaume-Uni</lsd:description>
-       |                </lsd:Lsd>
-       |              </rdentry:LsdList>
-       |            </rdentity:RDEntry>
-       |          </rdlist:RDEntity>
-       |        </msg:RDEntityList>
-       |      </msg:ReceiveReferenceDataRequestType>
-       |    </csrd:ReceiveReferenceDataReqMsg>
-       |  </soap:Body>
-       |</soap:Envelope>""".stripMargin
+  def xmlSubscriptionDeltaRequestFromID(identify: String): String = xmlString
 
-  def xmlFullMessageFromIDSubscriptionErrorReport(identify: String): String =
+  def xmlSubscriptionErrorReportFromID(identify: String): String =
     s"""<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope"
-         |                                                     xmlns:csrd="http://xmlns.ec.eu/CallbackService/CSRD2/IReferenceDataSubscriptionReceiverCBS/V4"
-         |                                                     xmlns:msg="http://xmlns.ec.eu/BusinessObjects/CSRD2/ReferenceDataSubscriptionReceiverCBSServiceType/V4"
-         |                                                     xmlns:hdr="http://xmlns.ec.eu/BusinessObjects/CSRD2/MessageHeaderType/V2">
-         |    <soap:Header>
-         |      <wsa:Action xmlns:wsa="http://www.w3.org/2005/08/addressing">
-         |        CCN2.Service.Customs.Default.CSRD.ReferenceDataSubscriptionReceiverCBS/ReceiveReferenceData
-         |      </wsa:Action>
-         |      <wsa:MessageID xmlns:wsa="http://www.w3.org/2005/08/addressing">
-         |        uuid:$identify
-         |      </wsa:MessageID>
-         |    </soap:Header>
-         |    <soap:Body>
-         |      <csrd:ReceiveReferenceDataReqMsg>
-         |        <msg:ReceiveReferenceDataRequestType>
-         |          <msg:MessageHeader>
-         |            <hdr:MessageID>MSG-2024-12-30-003</hdr:MessageID>
-         |            <hdr:MessageTimestamp>2024-12-30T12:00:00Z</hdr:MessageTimestamp>
-         |            <hdr:SenderID>CUSTOMS_AUTHORITY_FR</hdr:SenderID>
-         |            <hdr:ReceiverID>SUBSCRIBER_SYSTEM_03</hdr:ReceiverID>
-         |          </msg:MessageHeader>
-         |          <msg:ErrorReport>eSBmb3JtYXQu</msg:ErrorReport>
-         |        </msg:ReceiveReferenceDataRequestType>
-         |      </csrd:ReceiveReferenceDataReqMsg>
-         |    </soap:Body>
-         |  </soap:Envelope>""".stripMargin
+       |                                                     xmlns:csrd="http://xmlns.ec.eu/CallbackService/CSRD2/IReferenceDataSubscriptionReceiverCBS/V4"
+       |                                                     xmlns:msg="http://xmlns.ec.eu/BusinessObjects/CSRD2/ReferenceDataSubscriptionReceiverCBSServiceType/V4"
+       |                                                     xmlns:hdr="http://xmlns.ec.eu/BusinessObjects/CSRD2/MessageHeaderType/V2">
+       |    <soap:Header>
+       |      <wsa:Action xmlns:wsa="http://www.w3.org/2005/08/addressing">
+       |        CCN2.Service.Customs.Default.CSRD.ReferenceDataSubscriptionReceiverCBS/ReceiveReferenceData
+       |      </wsa:Action>
+       |      <wsa:MessageID xmlns:wsa="http://www.w3.org/2005/08/addressing">
+       |        uuid:$identify
+       |      </wsa:MessageID>
+       |    </soap:Header>
+       |    <soap:Body>
+       |      <csrd:ReceiveReferenceDataReqMsg>
+       |        <msg:ReceiveReferenceDataRequestType>
+       |          <msg:MessageHeader>
+       |            <hdr:MessageID>MSG-2024-12-30-003</hdr:MessageID>
+       |            <hdr:MessageTimestamp>2024-12-30T12:00:00Z</hdr:MessageTimestamp>
+       |            <hdr:SenderID>CUSTOMS_AUTHORITY_FR</hdr:SenderID>
+       |            <hdr:ReceiverID>SUBSCRIBER_SYSTEM_03</hdr:ReceiverID>
+       |          </msg:MessageHeader>
+       |          <msg:ErrorReport>eSBmb3JtYXQu</msg:ErrorReport>
+       |        </msg:ReceiveReferenceDataRequestType>
+       |      </csrd:ReceiveReferenceDataReqMsg>
+       |    </soap:Body>
+       |  </soap:Envelope>""".stripMargin
 
   def xmlFullMessageFromIDErrorReport(identify: String): String =
     s"""<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope"
@@ -193,4 +144,5 @@ object InboundSoapMessage {
        |        </v1:isAliveReqMsg>
        |      </soap:Body>
        |    </soap:Envelope>""".stripMargin
+
 }
