@@ -62,7 +62,7 @@ class InboundPostAPIController extends BaseSpec, HttpClient:
           "x-files-included" -> "true"
         )
       )
-      result.status shouldBe 202
+      result.status shouldBe 200
     }
   }
 
