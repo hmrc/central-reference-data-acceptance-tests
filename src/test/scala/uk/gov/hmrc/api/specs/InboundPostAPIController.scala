@@ -22,6 +22,9 @@ import uk.gov.hmrc.api.utils.InboundSoapMessage.{xmlFullMessage, xmlFullMessageE
 import scala.xml.{Elem, XML}
 import play.api.libs.ws.XMLBodyReadables.*
 import uk.gov.hmrc.api.utils.OutboundSoapMessage.xmlOutboundResponseMessageIsAlive
+import scala.xml.XML
+import scala.util.Try
+import java.util.UUID
 
 class InboundPostAPIController extends BaseSpec, HttpClient:
 
@@ -50,10 +53,11 @@ class InboundPostAPIController extends BaseSpec, HttpClient:
       wrapper_status.body.toString shouldBe "Received"
     }
 
-    Scenario("Central-reference-data-inbound-orchestrator subscription delta request endpoint works") {
+    Scenario("Verify the response for the subscription delta request is as expected") {
       Given("The endpoint is accessed")
-      val url    = s"$host"
-      val body   = xmlSubscriptionDeltaRequest
+      val url  = s"$host"
+      val body = xmlSubscriptionDeltaRequest
+
       val result = await(
         post(
           url,
@@ -63,117 +67,132 @@ class InboundPostAPIController extends BaseSpec, HttpClient:
         )
       )
       result.status shouldBe 200
+      assert((result.body[Elem] \\ "MessageType").text == "Orchestrator subscription response")
+
+      assert(
+        (result.body[Elem] \\ "RelatesTo").text ==
+          "3a61bf1c-1062-4457-98c7-f7a6945cb215"
+      )
+
+      assert(
+        (result.body[Elem] \\ "acknowledgement").text ==
+          "OK"
+      )
+
+      val messageId = (result.body[Elem] \\ "MessageID").text
+
+      assert(Try(UUID.fromString(messageId)).isSuccess)
     }
-  }
 
-  Scenario("Central-reference-data-inbound-orchestrator subscription error report message endpoint works") {
-    Given("The endpoint is accessed")
-    val url            = s"$host"
-    val body           = xmlSubscriptionErrorReportMessage
-    val result         = await(
-      post(
-        url,
-        body,
-        "content-type"     -> "application/xml",
-        "x-files-included" -> "true"
+    Scenario("Central-reference-data-inbound-orchestrator subscription error report message endpoint works") {
+      Given("The endpoint is accessed")
+      val url            = s"$host"
+      val body           = xmlSubscriptionErrorReportMessage
+      val result         = await(
+        post(
+          url,
+          body,
+          "content-type"     -> "application/xml",
+          "x-files-included" -> "true"
+        )
       )
-    )
-    result.status shouldBe 202
-    val id             = (XML.loadString(body) \\ "MessageID").head.text.trim.stripPrefix("uuid:")
-    val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
-    val wrapper_status = await(
-      get(
-        testOnlyUrl
+      result.status shouldBe 202
+      val id             = (XML.loadString(body) \\ "MessageID").head.text.trim.stripPrefix("uuid:")
+      val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
+      val wrapper_status = await(
+        get(
+          testOnlyUrl
+        )
       )
-    )
-    wrapper_status.status        shouldBe 202
-    wrapper_status.body.toString shouldBe "Received"
-  }
+      wrapper_status.status        shouldBe 202
+      wrapper_status.body.toString shouldBe "Received"
+    }
 
-  Scenario("Return Bad Request if the x-files-included header is not present") {
-    Given("The endpoint is not accessed")
-    val url            = s"$host"
-    val body           = xmlFullMessage
-    val result         = await(
-      post(
-        url,
-        body,
-        "content-type" -> "application/xml"
+    Scenario("Return Bad Request if the x-files-included header is not present") {
+      Given("The endpoint is not accessed")
+      val url            = s"$host"
+      val body           = xmlFullMessage
+      val result         = await(
+        post(
+          url,
+          body,
+          "content-type" -> "application/xml"
+        )
       )
-    )
-    result.status shouldBe 400
-    val id             = (XML.loadString(body) \\ "ReceiveReferenceDataRequestResult").text.trim
-    val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
-    val wrapper_status = await(
-      get(
-        testOnlyUrl
+      result.status shouldBe 400
+      val id             = (XML.loadString(body) \\ "ReceiveReferenceDataRequestResult").text.trim
+      val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
+      val wrapper_status = await(
+        get(
+          testOnlyUrl
+        )
       )
-    )
-    wrapper_status.status        shouldBe 404
-    wrapper_status.body.toString shouldBe ""
-  }
+      wrapper_status.status        shouldBe 404
+      wrapper_status.body.toString shouldBe ""
+    }
 
-  Scenario("Central-reference-data-inbound-orchestrator endpoint works for Full Extract ErrorReport Case") {
-    Given("The endpoint is accessed")
-    val url            = s"$host"
-    val body           = xmlFullMessageErrorReport
-    val result         = await(
-      post(
-        url,
-        body,
-        "content-type"     -> "application/xml",
-        "x-files-included" -> "true"
+    Scenario("Central-reference-data-inbound-orchestrator endpoint works for Full Extract ErrorReport Case") {
+      Given("The endpoint is accessed")
+      val url            = s"$host"
+      val body           = xmlFullMessageErrorReport
+      val result         = await(
+        post(
+          url,
+          body,
+          "content-type"     -> "application/xml",
+          "x-files-included" -> "true"
+        )
       )
-    )
-    result.status shouldBe 202
-    val id             = (XML.loadString(body) \\ "ErrorReport").text.trim
-    val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
-    val wrapper_status = await(
-      get(
-        testOnlyUrl
+      result.status shouldBe 202
+      val id             = (XML.loadString(body) \\ "ErrorReport").text.trim
+      val testOnlyUrl    = s"$testOnlyHost/message-wrappers/$id"
+      val wrapper_status = await(
+        get(
+          testOnlyUrl
+        )
       )
-    )
-    wrapper_status.status        shouldBe 202
-    wrapper_status.body.toString shouldBe "Received"
-  }
+      wrapper_status.status        shouldBe 202
+      wrapper_status.body.toString shouldBe "Received"
+    }
 
-  Scenario("isAlive Health Check works successfully") {
-    Given("The endpoint is accessed")
-    val url    = s"$host"
-    val body   = xmlFullMessageIsAlive
-    val result = await(
-      post(
-        url,
-        body
+    Scenario("isAlive Health Check works successfully") {
+      Given("The endpoint is accessed")
+      val url    = s"$host"
+      val body   = xmlFullMessageIsAlive
+      val result = await(
+        post(
+          url,
+          body
+        )
       )
-    )
-    result.status     shouldBe 200
-    result.body[Elem] shouldBe XML.loadString(xmlOutboundResponseMessageIsAlive)
-  }
+      result.status     shouldBe 200
+      result.body[Elem] shouldBe XML.loadString(xmlOutboundResponseMessageIsAlive)
+    }
 
-  Scenario("isAlive Health Check returns 400 with invalid message") {
-    Given("The endpoint is accessed")
-    val url    = s"$host"
-    val body   = xmlFullMessageIsAliveWithInvalidMessage
-    val result = await(
-      post(
-        url,
-        body
+    Scenario("isAlive Health Check returns 400 with invalid message") {
+      Given("The endpoint is accessed")
+      val url    = s"$host"
+      val body   = xmlFullMessageIsAliveWithInvalidMessage
+      val result = await(
+        post(
+          url,
+          body
+        )
       )
-    )
-    result.status shouldBe 400
-  }
+      result.status shouldBe 400
+    }
 
-  Scenario("Return Bad Request if there is no XML content") {
-    Given("The endpoint is not accessed")
-    val url    = s"$host"
-    val result = await(
-      post(
-        url,
-        "",
-        "x-files-included" -> "true",
-        "content-type"     -> "application/xml"
+    Scenario("Return Bad Request if there is no XML content") {
+      Given("The endpoint is not accessed")
+      val url    = s"$host"
+      val result = await(
+        post(
+          url,
+          "",
+          "x-files-included" -> "true",
+          "content-type"     -> "application/xml"
+        )
       )
-    )
-    result.status shouldBe 400
+      result.status shouldBe 400
+    }
   }
